@@ -6,12 +6,13 @@ import 'package:flutter_picture_select/bean/LocalImageBean.dart';
 import 'package:flutter_picture_select/dialog/BottomPickerHandler.dart';
 import 'package:flutter_picture_select/dialog/ProgressDialog.dart';
 import 'package:flutter_picture_select/util/PermissionUtil.dart';
+import 'package:flutter_picture_select/util/ToastUtil.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:simple_permissions/simple_permissions.dart';
 
 //常量定义
-const String name1 = '图片选择';
+const String title = '图片选择';
 
 class PictureSelectWidget extends StatefulWidget {
   PictureSelectWidget({Key key, this.title}) : super(key: key);
@@ -254,7 +255,7 @@ class _PictureSelectWidgetState extends State<PictureSelectWidget>with TickerPro
         //调用delete
       },
       child: Image.asset(
-        'images/icon_image_delete.png',
+        'images/icon_close.png',
         width: 15,
         height: 15,
         fit: BoxFit.cover,
@@ -283,7 +284,7 @@ class _PictureSelectWidgetState extends State<PictureSelectWidget>with TickerPro
     return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color(0xFFF5F5F5),
-          title: Text(name1),
+          title: Text(title),
         ),
         body: new ListView(
           shrinkWrap: true,
@@ -344,9 +345,9 @@ class _PictureSelectWidgetState extends State<PictureSelectWidget>with TickerPro
   Function buttonClick1() {
     setState(() {
       if(localImageBeanList != null && localImageBeanList.length > 0){
-        toast('已选择：$localImageBeanList');
+        ToastUtil.toast('已选择：$localImageBeanList');
       }else{
-        toast('你还未选择图片');
+        ToastUtil.toast('你还未选择图片');
       }
 
     });
@@ -360,17 +361,6 @@ class _PictureSelectWidgetState extends State<PictureSelectWidget>with TickerPro
     return null;
   }
 
-  void toast(String value) {
-    showToast(value,
-        duration: Duration(seconds: 2),
-        position: ToastPosition.bottom,
-        textDirection: TextDirection.ltr,
-        backgroundColor: Colors.grey,
-        textStyle: new TextStyle(
-          color: Colors.white,
-          fontSize: 14,
-        ));
-  }
 
   Future<void> asyncDeleteImage(int id) async {
     try {
@@ -412,7 +402,7 @@ class _PictureSelectWidgetState extends State<PictureSelectWidget>with TickerPro
               print("requestPermission-WriteExternalStorage$result");
               if(result == PermissionStatus.deniedNeverAsk){
                 //setting
-                toast('由于用户您选择不在提醒，并且拒绝了权限，请您去系统设置修改相关权限后再进行功能尝试');
+                ToastUtil.toast('由于用户您选择不在提醒，并且拒绝了权限，请您去系统设置修改相关权限后再进行功能尝试');
                 PermissionUtil.openPermissionSetting();
               }else if(result == PermissionStatus.authorized){
                 Future future2 = new Future(() => null);
@@ -422,7 +412,7 @@ class _PictureSelectWidgetState extends State<PictureSelectWidget>with TickerPro
                     print("requestPermission-Camera$result2");
                     if(result2 == PermissionStatus.deniedNeverAsk){
                       //setting
-                      toast('由于用户您选择不在提醒，并且拒绝了权限，请您去系统设置修改相关权限后再进行功能尝试');
+                      ToastUtil.toast('由于用户您选择不在提醒，并且拒绝了权限，请您去系统设置修改相关权限后再进行功能尝试');
                       PermissionUtil.openPermissionSetting();
 
                     }else if(result2 == PermissionStatus.authorized){

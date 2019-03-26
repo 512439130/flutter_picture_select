@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_picture_select/bean/TestBean.dart';
 import 'package:flutter_picture_select/dialog/ProgressDialog.dart';
+import 'package:flutter_picture_select/touch/MultiTouchAppPage.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -15,7 +16,7 @@ import 'dart:convert';
 import 'package:simple_permissions/simple_permissions.dart';
 
 //常量定义
-const String name1 = '图片展示';
+const String title = '图片展示GridView';
 
 class PictureDisplayWidget extends StatefulWidget {
   PictureDisplayWidget({Key key, this.title}) : super(key: key);
@@ -32,6 +33,9 @@ class _PictureDisplayWidgetState extends State<PictureDisplayWidget> {
   TestBean testBean = new TestBean();
   ProgressDialog progressDialog;
 
+
+  //控制动画显示状态变量
+  bool _visible = true;
 
   @override
   void initState() {
@@ -121,6 +125,9 @@ class _PictureDisplayWidgetState extends State<PictureDisplayWidget> {
 
   Widget getNetImage(int id, bool offstage, String url, BoxFit fit) {
     return new GestureDetector(
+      onTap: () {
+        _goPhotoView(url);
+      },
       child: new Offstage(
         //使用Offstage 控制widget在tree中的显示和隐藏
         offstage: offstage,
@@ -154,16 +161,16 @@ class _PictureDisplayWidgetState extends State<PictureDisplayWidget> {
     );
   }
 
-  Widget getDeleteIcon(int id) {
-    return new GestureDetector(
-      child: Image.asset(
-        'images/icon_image_delete.png',
-        width: 20,
-        height: 20,
-        fit: BoxFit.cover,
-      ),
-    );
-  }
+//  Widget getDeleteIcon(int id) {
+//    return new GestureDetector(
+//      child: Image.asset(
+//        'images/icon_image_delete.png',
+//        width: 20,
+//        height: 20,
+//        fit: BoxFit.cover,
+//      ),
+//    );
+//  }
 
   Widget buildGrid(List<Widget> listWidget) {
     return new GridView.count(
@@ -188,7 +195,7 @@ class _PictureDisplayWidgetState extends State<PictureDisplayWidget> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color(0xFFF5F5F5),
-          title: Text(name1),
+          title: Text(title),
         ),
         body: new ListView(
           shrinkWrap: true,
@@ -217,13 +224,13 @@ class _PictureDisplayWidgetState extends State<PictureDisplayWidget> {
               child: buildGrid(listWidget),
             ),
 
-            //按钮
-            new Container(
-              margin: const EdgeInsets.only(
-                  top: 40, bottom: 40, left: 10, right: 10),
-              child: buildButton("确认", const Color(0xFFFFFFFF),
-                  const Color(0x803068E8), buttonClick1),
-            ),
+//            //按钮
+//            new Container(
+//              margin: const EdgeInsets.only(
+//                  top: 40, bottom: 40, left: 10, right: 10),
+//              child: buildButton("确认", const Color(0xFFFFFFFF),
+//                  const Color(0x803068E8), buttonClick1),
+//            ),
 
           ],
         ));
@@ -272,6 +279,29 @@ class _PictureDisplayWidgetState extends State<PictureDisplayWidget> {
 //    await Future.delayed(Duration(microseconds: 1000), () {
 //      progressDialog.hide();
 //    });
+  }
+
+
+  void _goPhotoView(String url) {
+    Navigator.of(context).push(new PageRouteBuilder(
+        opaque: false,
+        pageBuilder: (BuildContext context, _, __) {
+          return new MultiTouchPage(url);
+        },
+        transitionsBuilder: (_,Animation<double> animation,__, Widget widget) {
+          return new FadeTransition(
+            opacity: animation,
+              child: new AnimatedOpacity(
+                opacity: _visible? 1.0:0.0,
+                duration: new Duration(seconds: 1),
+                child: widget,
+              )
+//            child: new RotationTransition(
+//              turns: new Tween<double>(begin: 0.5, end: 1.0).animate(animation),
+//              child: widget,
+//            ),
+          );
+        }));
   }
 
 

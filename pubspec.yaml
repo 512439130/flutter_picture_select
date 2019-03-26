@@ -47,3 +47,4 @@ flutter:
 
   assets:
           - images/icon_add.png
+          - images/icon_close.png
