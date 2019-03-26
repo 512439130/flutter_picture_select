@@ -15,6 +15,9 @@
 * 1.图片点击预览，手指可操作
 * 2.插件抽取封装
 
+
+# 学习链接
+1.[Flutter中文网](https://flutterchina.club/)
 ## Getting Started
 
 This project is a starting point for a Flutter application.
