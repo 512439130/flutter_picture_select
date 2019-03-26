@@ -1,32 +1,28 @@
-# flutter_picture_select
+## flutter study ing...
 
 (picture_select-study)
 ## 已完成功能：
-### 图片选择器
-* 1.权限申请。
-* 2.系统图片选择。
-* 3.系统照相机选择。
-* 4.相片裁剪。
-* 5.增加、删除、修改功能
-* 6.图片展示（渐现）
-## 下拉刷新/上拉加载widget实现
+### 图片选择器（增加、删除、修改（类似发朋友圈功能）
+* 1.动态权限申请（兼容Android/iOS）。
+* 2.系统图片选择（裁剪可控）。
+* 3.系统照相机拍照（裁剪可控）。
+* 4.图片展示（渐现，进度条，占位符）
+* 5.图片点击预览，页面跳转间动画（渐显），图片可手势操作。
 
-## 待完善功能
-* 1.图片点击预览，手指可操作
-* 2.插件抽取封装
+## ListView.Builder(无限列表 )实现（可根据数据更新状态）。
+* 1.下拉刷新。
+* 2.上拉加载。
 
+
+## 会持续学习，不断完善
+* 1.网络请求
+* 2.文件存取
+* 3.页面跳转并传参（路由）
+* 4.native跳转并传参（native《=》flutter）
+* 5.适配（字体大小，宽高），自定义字体，国际化
+* 6.插件封装
 
 # 学习链接
 1.[Flutter中文网](https://flutterchina.club/)
-## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+### 积少成多，全靠自觉
