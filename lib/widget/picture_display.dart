@@ -4,11 +4,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_picture_select/bean/TestBean.dart';
+import 'package:flutter_picture_select/const/Constant.dart';
 import 'package:flutter_picture_select/dialog/ProgressDialog.dart';
-import 'package:flutter_picture_select/touch/MultiTouchAppPage.dart';
+import 'package:flutter_picture_select/touch/TouchImageViewer.dart';
+import 'package:flutter_picture_select/util/PictureUtil.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:image_picker/image_picker.dart';
-
 
 //jsonDecode
 import 'dart:convert';
@@ -33,9 +34,8 @@ class _PictureDisplayWidgetState extends State<PictureDisplayWidget> {
   TestBean testBean = new TestBean();
   ProgressDialog progressDialog;
 
+  List<String> imageUrls;
 
-  //控制动画显示状态变量
-  bool _visible = true;
 
   @override
   void initState() {
@@ -44,10 +44,7 @@ class _PictureDisplayWidgetState extends State<PictureDisplayWidget> {
     print("initState");
     initProgress();
 
-
     init();
-
-
   }
 
   @override
@@ -56,18 +53,21 @@ class _PictureDisplayWidgetState extends State<PictureDisplayWidget> {
     super.didChangeDependencies();
     print("didChangeDependencies");
   }
+
   @override
   void didUpdateWidget(PictureDisplayWidget oldWidget) {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
     print("didUpdateWidget");
   }
+
   @override
   void deactivate() {
     // TODO: implement deactivate
     super.deactivate();
     print("deactivate");
   }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -91,20 +91,18 @@ class _PictureDisplayWidgetState extends State<PictureDisplayWidget> {
     progressDialog.setMessage("Loading...");
     progressDialog.setTextColor(Colors.black);
     progressDialog.setTextSize(16);
-
-
-
   }
 
   void setList() {
     //listWidget
     listWidget = new List<Widget>();
+    imageUrls = new List<String>();
     for (int i = 0; i < testBean.datas.length; i++) {
       if (i < testBean.datas.length - 1) {
         listWidget.add(networkImage(i, testBean.datas[i].url));
+        imageUrls.add(testBean.datas[i].url);
       }
     }
-
   }
 
   Widget networkImage(int id, String url) {
@@ -121,12 +119,10 @@ class _PictureDisplayWidgetState extends State<PictureDisplayWidget> {
     );
   }
 
-
-
   Widget getNetImage(int id, bool offstage, String url, BoxFit fit) {
     return new GestureDetector(
       onTap: () {
-        _goPhotoView(url);
+        PictureUtil.openLargeImages(context, imageUrls,Constant.image_type_network,id);
       },
       child: new Offstage(
         //使用Offstage 控制widget在tree中的显示和隐藏
@@ -231,10 +227,10 @@ class _PictureDisplayWidgetState extends State<PictureDisplayWidget> {
 //              child: buildButton("确认", const Color(0xFFFFFFFF),
 //                  const Color(0x803068E8), buttonClick1),
 //            ),
-
           ],
         ));
   }
+
 //生成MaterialButton
   Container buildButton(
       String value, Color textColor, Color background, Function clickEvent()) {
@@ -252,14 +248,13 @@ class _PictureDisplayWidgetState extends State<PictureDisplayWidget> {
     );
   }
 
-
-
   Function buttonClick1() {
     setState(() {
       showProgress();
     });
     return null;
   }
+
   void toast(String value) {
     showToast(value,
         duration: Duration(seconds: 2),
@@ -272,36 +267,11 @@ class _PictureDisplayWidgetState extends State<PictureDisplayWidget> {
         ));
   }
 
-
-
   Future<void> showProgress() async {
     progressDialog.show();
 //    await Future.delayed(Duration(microseconds: 1000), () {
 //      progressDialog.hide();
 //    });
-  }
-
-
-  void _goPhotoView(String url) {
-    Navigator.of(context).push(new PageRouteBuilder(
-        opaque: false,
-        pageBuilder: (BuildContext context, _, __) {
-          return new MultiTouchPage(url);
-        },
-        transitionsBuilder: (_,Animation<double> animation,__, Widget widget) {
-          return new FadeTransition(
-            opacity: animation,
-              child: new AnimatedOpacity(
-                opacity: _visible? 1.0:0.0,
-                duration: new Duration(seconds: 1),
-                child: widget,
-              )
-//            child: new RotationTransition(
-//              turns: new Tween<double>(begin: 0.5, end: 1.0).animate(animation),
-//              child: widget,
-//            ),
-          );
-        }));
   }
 
 

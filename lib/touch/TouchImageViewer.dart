@@ -1,14 +1,19 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_picture_select/const/Constant.dart';
 import 'package:flutter_picture_select/util/ToastUtil.dart';
 
-const String title = '图片详情';
+
+const String title = '多图片详情';
 const double _kMinFlingVelocity = 500.0; //放大缩小速率
 
-class MultiTouchPage extends StatelessWidget {
+class TouchImageViewer extends StatelessWidget {
   final String imgUrl;
+  final String type; //网络图片，本地图片
 
-  MultiTouchPage(this.imgUrl);
+  TouchImageViewer(this.imgUrl, this.type);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +32,7 @@ class MultiTouchPage extends StatelessWidget {
 //              backgroundColor: const Color(0xFFFFFFFF),
 //              title: Text(title),
 //            ),
-            body: new MultiTouchAppPage(imgUrl),
+            body: new TouchViewerPage(imgUrl, type),
           ),
           new Container(
             margin: const EdgeInsets.all(30.0),
@@ -47,18 +52,19 @@ class MultiTouchPage extends StatelessWidget {
   }
 }
 
-class MultiTouchAppPage extends StatefulWidget {
+class TouchViewerPage extends StatefulWidget {
   final String imgUrl;
+  final String type;
 
-  MultiTouchAppPage(this.imgUrl);
+  TouchViewerPage(this.imgUrl, this.type);
 
   @override
   State<StatefulWidget> createState() {
-    return new _MultiTouchAppPage();
+    return new TouchImageViewerPage();
   }
 }
 
-class _MultiTouchAppPage extends State<MultiTouchAppPage>
+class TouchImageViewerPage extends State<TouchViewerPage>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<Offset> _flingAnimation;
@@ -121,7 +127,7 @@ class _MultiTouchAppPage extends State<MultiTouchAppPage>
     final Offset direction = details.velocity.pixelsPerSecond / magnitude;
     final double distance = (Offset.zero & context.size).shortestSide;
     _flingAnimation = new Tween<Offset>(
-            begin: _offset, end: _clampOffset(_offset + direction * distance))
+        begin: _offset, end: _clampOffset(_offset + direction * distance))
         .animate(_controller);
     _controller
       ..value = 0.0
@@ -132,36 +138,44 @@ class _MultiTouchAppPage extends State<MultiTouchAppPage>
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size; //获取屏幕宽高
-    return new GestureDetector(
-      onScaleStart: _handleOnScaleStart, //缩放开始状态
-      onScaleUpdate: _handleOnScaleUpdate,
-      onScaleEnd: _handleOnScaleEnd, //缩放结束状态
-      child: new ClipRect(
-        child: new Transform(
-            transform: new Matrix4.identity()
-              ..translate(_offset.dx, _offset.dy)
-              ..scale(_scale),
-            child: new Center(
-              child: new Image(image: new CachedNetworkImageProvider(
-                  widget.imgUrl
-              )
-              ),
-//              child: new CachedNetworkImage(
-////                width: double.infinity,
-//                height: size.height - 300,  //保证底部保留100高度给按钮部分
-//                fit: BoxFit.contain, //保持原比例
-//                fadeInCurve: Curves.ease,
-//                fadeInDuration: Duration(milliseconds: 800),
-//                fadeOutCurve: Curves.ease,
-//                fadeOutDuration: Duration(milliseconds: 400),
-//                imageUrl: widget.imgUrl,
-////        placeholder: (context, url) => Image(image: AssetImage('images/icon_image_default.png')),
-//                placeholder: (context, url) => CircularProgressIndicator(),
-//                errorWidget: (context, url, error) => new Icon(Icons.error),
-//              ),
-            )),
-      ),
-    );
+    Size size = MediaQuery
+        .of(context)
+        .size; //获取屏幕宽高
+
+    if (widget.type == Constant.image_type_sdcard) { //本地图片
+      return new GestureDetector(
+        onScaleStart: _handleOnScaleStart, //缩放开始状态
+        onScaleUpdate: _handleOnScaleUpdate,
+        onScaleEnd: _handleOnScaleEnd, //缩放结束状态
+        child: new ClipRect(
+          child: new Transform(
+              transform: new Matrix4.identity()
+                ..translate(_offset.dx, _offset.dy)
+                ..scale(_scale),
+              child: new Center(
+                child: Image.file(new File(widget.imgUrl),
+                ),
+              )),
+        ),
+      );
+    } else if (widget.type == Constant.image_type_network) { //网络图片
+      return new GestureDetector(
+        onScaleStart: _handleOnScaleStart, //缩放开始状态
+        onScaleUpdate: _handleOnScaleUpdate,
+        onScaleEnd: _handleOnScaleEnd, //缩放结束状态
+        child: new ClipRect(
+          child: new Transform(
+              transform: new Matrix4.identity()
+                ..translate(_offset.dx, _offset.dy)
+                ..scale(_scale),
+              child: new Center(
+                child: new Image(image: new CachedNetworkImageProvider(
+                    widget.imgUrl
+                )
+                ),
+              )),
+        ),
+      );
+    }
   }
 }

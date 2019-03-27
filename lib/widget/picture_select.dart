@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_picture_select/bean/LocalImageBean.dart';
+import 'package:flutter_picture_select/const/Constant.dart';
 import 'package:flutter_picture_select/dialog/BottomPickerHandler.dart';
 import 'package:flutter_picture_select/dialog/ProgressDialog.dart';
 import 'package:flutter_picture_select/util/PermissionUtil.dart';
+import 'package:flutter_picture_select/util/PictureUtil.dart';
 import 'package:flutter_picture_select/util/ToastUtil.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:image_picker/image_picker.dart';
@@ -30,6 +32,8 @@ class _PictureSelectWidgetState extends State<PictureSelectWidget>with TickerPro
   ProgressDialog progressDialog;
   AnimationController _controller;
   BottomPickerHandler bottomPicker;
+
+  List<String> imageUrls;
 
   //选择器
 
@@ -126,11 +130,13 @@ class _PictureSelectWidgetState extends State<PictureSelectWidget>with TickerPro
     //listWidget
     //每次生成新的图片数组
     listWidget = new List<Widget>();
+    imageUrls = new List<String>();
     if (localImageBeanList != null && localImageBeanList.length > 0) {
       print('localImageBeanList!=0');
       for (int i = 0; i < localImageBeanList.length; i++) {
         listWidget.add(sdCardImage(i, localImageBeanList[i].path));
-        print('localImageBeanList-path:' + localImageBeanList[0].path);
+        imageUrls.add(localImageBeanList[i].path);
+        print('localImageBeanList-path:' + localImageBeanList[i].path);
       }
       //每次在尾部加添加图片
       listWidget.add(localImage('images/icon_add.png', BoxFit.cover));
@@ -200,7 +206,8 @@ class _PictureSelectWidgetState extends State<PictureSelectWidget>with TickerPro
   Widget getSdCardImage(int id, bool offstage, String path, BoxFit fit) {
     return new GestureDetector(
       onTap: () {
-        asyncReplaceImage(id);
+//        asyncReplaceImage(id);
+        PictureUtil.openLargeImages(context, imageUrls, Constant.image_type_sdcard, id);
       },
       child: new Offstage(
         //使用Offstage 控制widget在tree中的显示和隐藏
