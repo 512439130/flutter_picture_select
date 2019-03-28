@@ -64,7 +64,7 @@ class _PictureSelectWidgetState extends State<PictureSelectWidget>with TickerPro
   }
 
   @override
-  useImage(File _image) {
+  bottomSelectImage(File _image) {
     // TODO: implement useImage
     int length;
     if (localImageBeanList != null && localImageBeanList.length > 0) {

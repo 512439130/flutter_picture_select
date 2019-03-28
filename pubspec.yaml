@@ -28,8 +28,7 @@ dependencies:
   image_picker: ^0.4.12+1   #系统相册
   flutter_picker: ^1.0.10  #picker
   image_cropper: ^1.0.0 #裁剪
-
-  dio: ^2.1.x   #网络请求库
+  dio: ^2.1.0    #网络请求库
 
 dev_dependencies:
   flutter_test:

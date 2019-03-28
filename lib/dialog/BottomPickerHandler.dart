@@ -31,7 +31,7 @@ class BottomPickerHandler {
     //相册裁剪关闭
     if(image != null){
 //      cropImage(image);
-      _listener.useImage(image);
+      _listener.bottomSelectImage(image);
     }else{
       print("未操作-openCamera");
     }
@@ -50,7 +50,7 @@ class BottomPickerHandler {
       maxWidth: 512,
       maxHeight: 512,
     );
-    _listener.useImage(croppedFile);
+    _listener.bottomSelectImage(croppedFile);
   }
 
   showDialog(BuildContext context) {
@@ -59,5 +59,5 @@ class BottomPickerHandler {
 }
 
 abstract class BottomPickerListener {
-  useImage(File _image);
+  bottomSelectImage(File _image);
 }

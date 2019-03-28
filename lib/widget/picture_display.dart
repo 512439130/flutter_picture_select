@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_picture_select/bean/ImageBean.dart';
 
-import 'package:flutter_picture_select/bean/TestBean.dart';
 import 'package:flutter_picture_select/const/Constant.dart';
 import 'package:flutter_picture_select/dialog/ProgressDialog.dart';
 import 'package:flutter_picture_select/touch/TouchImageViewer.dart';
@@ -31,7 +31,7 @@ class _PictureDisplayWidgetState extends State<PictureDisplayWidget> {
   List<Widget> listWidget;
   String testJsonValue;
   Map<String, dynamic> json;
-  TestBean testBean = new TestBean();
+  ImageBean imageBean = new ImageBean();
   ProgressDialog progressDialog;
 
   List<String> imageUrls;
@@ -81,7 +81,7 @@ class _PictureDisplayWidgetState extends State<PictureDisplayWidget> {
         '{"datas":[{"id":"1","url":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553505918721&di=30abbc97f9b299cad7de51a06cbee078&imgtype=0&src=http%3A%2F%2Fimg15.3lian.com%2F2015%2Ff2%2F57%2Fd%2F93.jpg"},{"id":"2","url":"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=80538588,251590437&fm=26&gp=0.png"},{"id":"3","url":"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3597303668,2750618423&fm=26&gp=0.png"},{"id":"4","url":"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=61077523,1715146142&fm=26&gp=0.png"},{"id":"5","url":"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4087213632,1096565806&fm=26&gp=0.png"},{"id":"6","url":"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3597303668,2750618423&fm=26&gp=0.png"}],"resMsg":{"message":"success !","method":null,"code":"1"}}';
     if (testJsonValue != null) {
       json = jsonDecode(testJsonValue);
-      testBean = TestBean.fromJson(json);
+      imageBean = ImageBean.fromJson(json);
       setList();
     }
   }
@@ -97,10 +97,10 @@ class _PictureDisplayWidgetState extends State<PictureDisplayWidget> {
     //listWidget
     listWidget = new List<Widget>();
     imageUrls = new List<String>();
-    for (int i = 0; i < testBean.datas.length; i++) {
-      if (i < testBean.datas.length - 1) {
-        listWidget.add(networkImage(i, testBean.datas[i].url));
-        imageUrls.add(testBean.datas[i].url);
+    for (int i = 0; i < imageBean.datas.length; i++) {
+      if (i < imageBean.datas.length - 1) {
+        listWidget.add(networkImage(i, imageBean.datas[i].url));
+        imageUrls.add(imageBean.datas[i].url);
       }
     }
   }
