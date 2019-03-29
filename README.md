@@ -12,7 +12,7 @@
 * 5.支持点击预览，页面跳转间动画，图片可手势操作（放大，缩小）。
 * 6.支持图片保存本地。
 
-####2.1 使用方法
+### 2.1 使用方法
 
 * 1.GridPictureSelectWidget（图片选择添加，删除，替换，支持拍照并裁剪）
 * 使用方法：参考view/SelectDemoWidget文件
@@ -52,7 +52,7 @@ Function deleteClick(int id) {
       return null;
 }
 ```
-* 2.GridPictureDisplayWidget（图片渐现，加载进度条占位符，支持图片下载保存到本地，大图展示（支持多图展示））
+### 2.GridPictureDisplayWidget（图片渐现，加载进度条占位符，支持图片下载保存到本地，大图展示（支持多图展示））
 * 使用方法：参考view/DisplayDemoWidget文件
 * code:
 
@@ -78,7 +78,7 @@ Widget build(BuildContext context) {
 
 ```
 
-* 3.GridHeaderDisplayWidget（图片展示其，支持更多的样式自定义）
+### 3.GridHeaderDisplayWidget（图片展示其，支持更多的样式自定义）
 * 使用方法：参考view/HeaderDisplayDemoWidget文件
 * code:
 
@@ -131,8 +131,8 @@ Widget build(BuildContext context) {
 * 3.请求日志打印
 * 4.请求取消(CancelToken)
 * ...
-####3.1 API
-* 1.Get(get请求)
+### 3.1 API
+### 1.Get(get请求)
 * code:
 
 ```
@@ -156,7 +156,7 @@ Future requestGET() async {
 }
 ```
 
-* 2.Post（post请求）
+### 2.Post（post请求）
 * code:
 
 ```
@@ -179,7 +179,7 @@ Future requestPOST() async {
 }
 ```
 
-* 3.FormData(携带参数请求，支持单/多文件携带)
+### 3.FormData(携带参数请求，支持单/多文件携带)
 * code:
 
 ```
@@ -204,7 +204,7 @@ String url = 'https://www.zbg.com/exchange/config/controller/website/MarketContr
 
 
 
-* 4.jsonBody（携带jsonbody请求）
+### 4.jsonBody（携带jsonbody请求）
 * code:
 
 ```
@@ -229,7 +229,7 @@ String url = 'https://www.zbg.com/exchange/config/controller/website/MarketContr
 }
 ```
 
-* 5.downLoad(文件下载)
+### 5.downLoad(文件下载)
 * code:
 
 ```
