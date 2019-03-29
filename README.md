@@ -71,7 +71,7 @@ Widget build(BuildContext context) {
 
 ```
 
-### 3.GridHeaderDisplayWidget（图片展示其，支持更多的样式自定义）
+### 3.GridHeaderDisplayWidget（图片展示器，支持更多的样式自定义）
 
 ```
 Widget build(BuildContext context) {
