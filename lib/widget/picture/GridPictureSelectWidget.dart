@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_picture_select/bean/LocalImageBean.dart';
-import 'package:flutter_picture_select/dialog/BottomPickerHandler.dart';
-import 'package:flutter_picture_select/dialog/ProgressDialog.dart';
+import 'package:flutter_picture_select/widget/dialog/BottomPickerHandler.dart';
+import 'package:flutter_picture_select/widget/dialog/ProgressDialog.dart';
 import 'package:flutter_picture_select/util/ListUtil.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -21,9 +21,9 @@ class GridPictureSelectWidget extends StatefulWidget {
   double count;  //每行个数
   double maxWidth;//最大宽度
   double roundArc;//圆角弧度
-  Function() onAddPress;
-  Function(int id, List<String> urls) onReplacePress;
-  Function(int) onDeletePress;
+  Function() onAddPress;  //加号按钮回调
+  Function(int id, List<String> urls) onReplacePress;  //替换回调
+  Function(int) onDeletePress;  //删除按钮回调
 
   GridPictureSelectWidget(this.localImageBeanList, this.count,this.maxWidth,this.roundArc, this.onAddPress, this.onReplacePress, this.onDeletePress);
   @override

@@ -6,7 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_picture_select/bean/ImageBean.dart';
-import 'package:flutter_picture_select/view/GridPictureDisplayWidget.dart';
+import 'package:flutter_picture_select/widget/picture/GridPictureDisplayWidget.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:image_picker/image_picker.dart';
@@ -56,11 +56,11 @@ class DisplayDemoWidgetState extends State<DisplayDemoWidget>{
         body: new ListView(
           physics: BouncingScrollPhysics(),
           children: <Widget>[
-            GridPictureDisplayWidget(context,imageBean, 2,360,5),
-            GridPictureDisplayWidget(context,imageBean, 3,360,5),
-            GridPictureDisplayWidget(context,imageBean, 4,360,5),
-            GridPictureDisplayWidget(context,imageBean, 5,360,5),
-            GridPictureDisplayWidget(context,imageBean, 6,360,5),
+            GridPictureDisplayWidget(imageBean, 2,360,5),
+            GridPictureDisplayWidget(imageBean, 3,360,5),
+            GridPictureDisplayWidget(imageBean, 4,360,5),
+            GridPictureDisplayWidget(imageBean, 5,360,5),
+            GridPictureDisplayWidget(imageBean, 6,360,5),
           ],
         ));
   }

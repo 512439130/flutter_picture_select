@@ -6,13 +6,13 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_picture_select/bean/LocalImageBean.dart';
 import 'package:flutter_picture_select/const/Constant.dart';
-import 'package:flutter_picture_select/dialog/BottomPickerHandler.dart';
-import 'package:flutter_picture_select/dialog/ProgressDialog.dart';
+import 'package:flutter_picture_select/widget/dialog/BottomPickerHandler.dart';
+import 'package:flutter_picture_select/widget/dialog/ProgressDialog.dart';
 import 'package:flutter_picture_select/util/ListUtil.dart';
 import 'package:flutter_picture_select/util/PermissionUtil.dart';
 import 'package:flutter_picture_select/util/PictureUtil.dart';
 import 'package:flutter_picture_select/util/ToastUtil.dart';
-import 'package:flutter_picture_select/view/GridPictureSelectWidget.dart';
+import 'package:flutter_picture_select/widget/picture/GridPictureSelectWidget.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:image_picker/image_picker.dart';

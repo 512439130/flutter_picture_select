@@ -2,14 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_picture_select/network/network.dart';
-import 'package:flutter_picture_select/refresh/refresh.dart';
-import 'package:flutter_picture_select/view/DisplayDemoWidget.dart';
-import 'package:flutter_picture_select/view/HeaderDisplayDemoWidget.dart';
-import 'package:flutter_picture_select/view/SelectDemoWidget.dart';
-import 'package:flutter_picture_select/widget/picture_display.dart';
-import 'package:flutter_picture_select/widget/picture_select.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_picture_select/widget/demo/network.dart';
+import 'package:flutter_picture_select/widget/demo/picture_display.dart';
+import 'package:flutter_picture_select/widget/demo/picture_select.dart';
+import 'package:flutter_picture_select/widget/demo/refresh.dart';
+import 'package:flutter_picture_select/widget/demo/DisplayDemoWidget.dart';
+import 'package:flutter_picture_select/widget/demo/HeaderDisplayDemoWidget.dart';
+import 'package:flutter_picture_select/widget/demo/SelectDemoWidget.dart';
 import 'package:oktoast/oktoast.dart';
 
 //常量定义
@@ -51,13 +50,13 @@ class MyApp extends StatelessWidget {
         home: MyHomePage(),
         routes: <String, WidgetBuilder>{
           // 定义静态路由，不能传递参数
-          '/router/refresh/refresh': (_) => new RefreshWidget(),
-          '/router/widget/picture_select': (_) => new PictureSelectWidget(),
-          '/router/widget/picture_display': (_) => new PictureDisplayWidget(),
-          '/router/view/GridPictureSelectWidget': (_) => new SelectDemoWidget(),
-          '/router/view/GridPictureDisplayWidget': (_) => new DisplayDemoWidget(),
-          '/router/view/HeaderDisplayDemoWidget': (_) => new HeaderDisplayDemoWidget(),
-          '/router/network/network': (_) => new NetworkWidget(),
+          '/router/widget/demo/refresh': (_) => new RefreshWidget(),
+          '/router/widget/demo/picture_select': (_) => new PictureSelectWidget(),
+          '/router/widget/demo/picture_display': (_) => new PictureDisplayWidget(),
+          '/router/widget/demo/GridPictureSelectWidget': (_) => new SelectDemoWidget(),
+          '/router/widget/demo/GridPictureDisplayWidget': (_) => new DisplayDemoWidget(),
+          '/router/widget/demo/HeaderDisplayDemoWidget': (_) => new HeaderDisplayDemoWidget(),
+          '/router/widget/demo/network/network': (_) => new NetworkWidget(),
         },
       ),
     );
@@ -99,43 +98,43 @@ class _MyHomePageState extends State<MyHomePage> {
               color: const Color(0xFFFFFFFF),
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
               child: buildButton("RefreshWidget", Colors.white, Colors.deepOrangeAccent,
-                  '/router/refresh/refresh'),
+                  '/router/widget/demo/refresh'),
             ),
             new Container(
               color: const Color(0xFFFFFFFF),
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
               child: buildButton("PictureSelectWidget", Colors.white, Colors.deepOrangeAccent,
-                  '/router/widget/picture_select'),
+                  '/router/widget/demo/picture_select'),
             ),
             new Container(
               color: const Color(0xFFFFFFFF),
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
               child:  buildButton("PictureDisplayWidget", Colors.white, Colors.deepOrangeAccent,
-                  '/router/widget/picture_display'),
+                  '/router/widget/demo/picture_display'),
             ),
             new Container(
               color: const Color(0xFFFFFFFF),
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
               child: buildButton("GridPictureSelectWidget", Colors.white, Colors.deepOrangeAccent,
-                  '/router/view/GridPictureSelectWidget'),
+                  '/router/widget/demo/GridPictureSelectWidget'),
             ),
             new Container(
               color: const Color(0xFFFFFFFF),
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
               child: buildButton("GridPictureDisplayWidget", Colors.white, Colors.deepOrangeAccent,
-                  '/router/view/GridPictureDisplayWidget'),
+                  '/router/widget/demo/GridPictureDisplayWidget'),
             ),
             new Container(
               color: const Color(0xFFFFFFFF),
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
               child: buildButton("HeaderDisplayDemoWidget", Colors.white, Colors.deepOrangeAccent,
-                  '/router/view/HeaderDisplayDemoWidget'),
+                  '/router/widget/demo/HeaderDisplayDemoWidget'),
             ),
             new Container(
               color: const Color(0xFFFFFFFF),
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
               child: buildButton("NetworkWidget", Colors.white, Colors.deepOrangeAccent,
-                  '/router/network/network'),
+                  '/router/widget/demo/network'),
             ),
           ],
 

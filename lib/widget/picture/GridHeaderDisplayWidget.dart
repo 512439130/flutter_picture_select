@@ -12,13 +12,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 //图片GridView展示功能
 class GridHeaderDisplayWidget extends StatefulWidget {
-  BuildContext mContext;
+
   HeaderBean headerBean = new HeaderBean();
   double count; //每行个数
   double maxWidth; //最大宽度
 
-  GridHeaderDisplayWidget(
-      this.mContext, this.headerBean, this.count, this.maxWidth);
+  GridHeaderDisplayWidget(this.headerBean, this.count, this.maxWidth);
 
   @override
   _GridHeaderDisplayWidgetState createState() =>

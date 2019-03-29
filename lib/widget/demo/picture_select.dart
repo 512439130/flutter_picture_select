@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_picture_select/bean/LocalImageBean.dart';
 import 'package:flutter_picture_select/const/Constant.dart';
-import 'package:flutter_picture_select/dialog/BottomPickerHandler.dart';
-import 'package:flutter_picture_select/dialog/ProgressDialog.dart';
+import 'package:flutter_picture_select/widget/dialog/BottomPickerHandler.dart';
+import 'package:flutter_picture_select/widget/dialog/ProgressDialog.dart';
 import 'package:flutter_picture_select/util/PermissionUtil.dart';
 import 'package:flutter_picture_select/util/PictureUtil.dart';
 import 'package:flutter_picture_select/util/ToastUtil.dart';

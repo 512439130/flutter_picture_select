@@ -13,7 +13,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 //图片GridView展示功能
 class GridPictureDisplayWidget extends StatefulWidget {
-  BuildContext mContext;
   ImageBean testBean;
   double count;  //每行个数
   double maxWidth;//最大宽度
@@ -21,7 +20,7 @@ class GridPictureDisplayWidget extends StatefulWidget {
 
 
 
-  GridPictureDisplayWidget(this.mContext, this.testBean, this.count,this.maxWidth,this.roundArc);
+  GridPictureDisplayWidget(this.testBean, this.count,this.maxWidth,this.roundArc);
   @override
   _GridPictureDisplayWidgetState createState() => _GridPictureDisplayWidgetState();
 }

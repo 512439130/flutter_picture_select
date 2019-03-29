@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_picture_select/bean/ImageBean.dart';
 
 import 'package:flutter_picture_select/const/Constant.dart';
-import 'package:flutter_picture_select/dialog/ProgressDialog.dart';
-import 'package:flutter_picture_select/touch/TouchImageViewer.dart';
+import 'package:flutter_picture_select/widget/dialog/ProgressDialog.dart';
+import 'package:flutter_picture_select/widget/touch/TouchImageViewer.dart';
 import 'package:flutter_picture_select/util/PictureUtil.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:image_picker/image_picker.dart';

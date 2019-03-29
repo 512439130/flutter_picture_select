@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_picture_select/touch/TouchImageViewer.dart';
-import 'package:flutter_picture_select/touch/TouchImagesViewer.dart';
+import 'package:flutter_picture_select/widget/touch/TouchImageViewer.dart';
+import 'package:flutter_picture_select/widget/touch/TouchImagesViewer.dart';
 import 'package:path/path.dart';
 
 class PictureUtil{

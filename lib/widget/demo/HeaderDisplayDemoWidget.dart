@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_picture_select/bean/HeaderBean.dart';
-import 'package:flutter_picture_select/dialog/BottomPickerHandler.dart';
-import 'package:flutter_picture_select/dialog/ProgressDialog.dart';
-import 'package:flutter_picture_select/view/GridHeaderDisplayWidget.dart';
+import 'package:flutter_picture_select/widget/dialog/BottomPickerHandler.dart';
+import 'package:flutter_picture_select/widget/dialog/ProgressDialog.dart';
+import 'package:flutter_picture_select/widget/picture/GridHeaderDisplayWidget.dart';
 
 //数据传递
 //原生&flutter互掉
@@ -51,7 +51,6 @@ class HeaderDisplayDemoWidgetState extends State<HeaderDisplayDemoWidget> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.blueGrey,
         appBar: AppBar(
@@ -63,27 +62,27 @@ class HeaderDisplayDemoWidgetState extends State<HeaderDisplayDemoWidget> {
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
-              child: GridHeaderDisplayWidget(context,headerBean, 3,340),
+              child: GridHeaderDisplayWidget(headerBean, 3,340),
             ),
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
-              child: GridHeaderDisplayWidget(context,headerBean, 4,340),
+              child: GridHeaderDisplayWidget(headerBean, 4,340),
             ),
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
-              child: GridHeaderDisplayWidget(context,headerBean, 5,340),
+              child: GridHeaderDisplayWidget(headerBean, 5,340),
             ),
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
-              child: GridHeaderDisplayWidget(context,headerBean, 6,340),
+              child: GridHeaderDisplayWidget(headerBean, 6,340),
             ),
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
-              child: GridHeaderDisplayWidget(context,headerBean, 7,340),
+              child: GridHeaderDisplayWidget(headerBean, 7,340),
             ),
           ],
         ));
