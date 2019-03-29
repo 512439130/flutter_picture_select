@@ -150,9 +150,7 @@ dioHttpUtil() {
     print('配置dio实例');
     // 配置dio实例
     baseOptions = new BaseOptions(
-      /// 请求路径，如果 `path` 以 "http(s)"开始, 则 `baseURL` 会被忽略； 否则,
-      /// 将会和baseUrl拼接出完整的的url.
-      baseUrl: "https://www.baidu.com/",
+      baseUrl: "https://www.baidu.com/",//baseUrl
       connectTimeout: 8000,  //连接超时时间
       receiveTimeout: 10000, //回调超时时间
 //      maxRedirects: 5,  //重定向最大次数。
