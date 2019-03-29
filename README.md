@@ -9,7 +9,7 @@
 * 5.支持点击预览，页面跳转间动画，图片可手势操作（放大，缩小）。
 * 6.支持图片保存本地。
 
-## Example （参考../widget/demo/xxx.dart文件）
+## Example （参考../widget/demo/xxxDemo.dart文件）
 
 ### 1.GridPictureSelectWidget（图片选择添加，删除，替换，支持拍照并裁剪）
 
@@ -119,16 +119,16 @@ Widget build(BuildContext context) {
 
 
 
-#Other
+# Other
 
 ## **原本是只是构造一个"图片展示器功能的Widget"，但flutter新知识不断学习，我喜欢记录一下，所以以下功能和原项目名称无关，如需要也可以查看学习。**
 
-### 1.ListView.Builder(无限列表 )实现（可根据数据更新状态）。（参考../widget/demo/refresh.dart文件）
+### 1.ListView.Builder(无限列表 )实现（可根据数据更新状态）（参考../widget/demo/RefreshDemo.dart文件）
 * 1.下拉刷新。
 * 2.上拉加载。
 
 
-### 2.网络请求工具类（基于dio）ing...（参考../widget/demo/dioHttpUtil.dart文件）
+### 2.网络请求工具类（基于dio）ing...（参考../util/dioHttpUtil.dart文件）
 * 1.构建单例模式
 * 2.BaseOptions编写
 * 3.日志
