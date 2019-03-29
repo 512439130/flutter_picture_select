@@ -2,13 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_picture_select/widget/demo/network.dart';
-import 'package:flutter_picture_select/widget/demo/picture_display.dart';
-import 'package:flutter_picture_select/widget/demo/picture_select.dart';
-import 'package:flutter_picture_select/widget/demo/refresh.dart';
-import 'package:flutter_picture_select/widget/demo/DisplayDemoWidget.dart';
-import 'package:flutter_picture_select/widget/demo/HeaderDisplayDemoWidget.dart';
-import 'package:flutter_picture_select/widget/demo/SelectDemoWidget.dart';
+import 'package:flutter_picture_select/widget/demo/NetworkDemo.dart';
+import 'package:flutter_picture_select/widget/demo/RefreshDemo.dart';
+import 'package:flutter_picture_select/widget/demo/GridPictureDisplayWidgetDemo.dart';
+import 'package:flutter_picture_select/widget/demo/GridHeaderDisplayWidgetDemo.dart';
+import 'package:flutter_picture_select/widget/demo/GridSelectPictureWidgetDemo.dart';
 import 'package:oktoast/oktoast.dart';
 
 //常量定义
@@ -50,13 +48,11 @@ class MyApp extends StatelessWidget {
         home: MyHomePage(),
         routes: <String, WidgetBuilder>{
           // 定义静态路由，不能传递参数
-          '/router/widget/demo/refresh': (_) => new RefreshWidget(),
-          '/router/widget/demo/picture_select': (_) => new PictureSelectWidget(),
-          '/router/widget/demo/picture_display': (_) => new PictureDisplayWidget(),
-          '/router/widget/demo/GridPictureSelectWidget': (_) => new SelectDemoWidget(),
-          '/router/widget/demo/GridPictureDisplayWidget': (_) => new DisplayDemoWidget(),
-          '/router/widget/demo/HeaderDisplayDemoWidget': (_) => new HeaderDisplayDemoWidget(),
-          '/router/widget/demo/network/network': (_) => new NetworkWidget(),
+          '/router/widget/demo/GridSelectPictureWidgetDemo': (_) => new GridSelectPictureWidgetDemo(),
+          '/router/widget/demo/GridPictureDisplayWidgetDemo': (_) => new GridPictureDisplayWidgetDemo(),
+          '/router/widget/demo/GridHeaderDisplayWidgetDemo': (_) => new GridHeaderDisplayWidgetDemo(),
+          '/router/widget/demo/RefreshDemo': (_) => new RefreshWidget(),
+          '/router/widget/demo/NetworkDemo': (_) => new NetworkWidget(),
         },
       ),
     );
@@ -94,47 +90,36 @@ class _MyHomePageState extends State<MyHomePage> {
         body: new ListView(
           physics: BouncingScrollPhysics(), //回弹效果
           children: <Widget>[
-            new Container(
-              color: const Color(0xFFFFFFFF),
-              margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-              child: buildButton("RefreshWidget", Colors.white, Colors.deepOrangeAccent,
-                  '/router/widget/demo/refresh'),
-            ),
-            new Container(
-              color: const Color(0xFFFFFFFF),
-              margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-              child: buildButton("PictureSelectWidget", Colors.white, Colors.deepOrangeAccent,
-                  '/router/widget/demo/picture_select'),
-            ),
-            new Container(
-              color: const Color(0xFFFFFFFF),
-              margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-              child:  buildButton("PictureDisplayWidget", Colors.white, Colors.deepOrangeAccent,
-                  '/router/widget/demo/picture_display'),
-            ),
-            new Container(
-              color: const Color(0xFFFFFFFF),
-              margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-              child: buildButton("GridPictureSelectWidget", Colors.white, Colors.deepOrangeAccent,
-                  '/router/widget/demo/GridPictureSelectWidget'),
-            ),
+
             new Container(
               color: const Color(0xFFFFFFFF),
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
               child: buildButton("GridPictureDisplayWidget", Colors.white, Colors.deepOrangeAccent,
-                  '/router/widget/demo/GridPictureDisplayWidget'),
+                  '/router/widget/demo/GridPictureDisplayWidgetDemo'),
             ),
             new Container(
               color: const Color(0xFFFFFFFF),
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-              child: buildButton("HeaderDisplayDemoWidget", Colors.white, Colors.deepOrangeAccent,
-                  '/router/widget/demo/HeaderDisplayDemoWidget'),
+              child: buildButton("GridHeaderDisplayWidgetDemo", Colors.white, Colors.deepOrangeAccent,
+                  '/router/widget/demo/GridHeaderDisplayWidgetDemo'),
+            ),
+            new Container(
+              color: const Color(0xFFFFFFFF),
+              margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+              child: buildButton("GridSelectPictureWidget", Colors.white, Colors.deepOrangeAccent,
+                  '/router/widget/demo/GridSelectPictureWidgetDemo'),
+            ),
+            new Container(
+              color: const Color(0xFFFFFFFF),
+              margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+              child: buildButton("RefreshWidget", Colors.white, Colors.deepOrangeAccent,
+                  '/router/widget/demo/RefreshDemo'),
             ),
             new Container(
               color: const Color(0xFFFFFFFF),
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
               child: buildButton("NetworkWidget", Colors.white, Colors.deepOrangeAccent,
-                  '/router/widget/demo/network'),
+                  '/router/widget/demo/NetworkDemo'),
             ),
           ],
 

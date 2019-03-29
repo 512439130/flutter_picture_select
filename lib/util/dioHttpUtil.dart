@@ -1,18 +1,22 @@
 
 import 'dart:io';
 
+import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_picture_select/util/ToastUtil.dart';
 
 class dioHttpUtil {
-  static dioHttpUtil instance;
+
   Dio dio;
   BaseOptions baseOptions;
 
   static const String GET = 'GET';
   static const String POST = 'POST';
+  static const String PUT = 'PUT';
+  static const String PATCH = 'PATCH';
+  static const String DELETE = 'DELETE';
 
-
-
+  static dioHttpUtil instance;
   static dioHttpUtil getInstance() {
     print('getInstance');
     if (instance == null) {
@@ -24,16 +28,11 @@ class dioHttpUtil {
   dioHttpUtil() {
     print('配置dio实例');
     // 配置dio实例
-
     baseOptions = new BaseOptions(
-
-      /// 请求路径，如果 `path` 以 "http(s)"开始, 则 `baseURL` 会被忽略； 否则,
-      /// 将会和baseUrl拼接出完整的的url.
-//      baseUrl: "https://www.zbg.com/exchange",  //测试暂时写全部请求链接，因为普通请求和下载链接前缀不同
-      connectTimeout: 5000,
-      receiveTimeout: 10000,
+      baseUrl: "https://www.baidu.com/",
+      connectTimeout: 8000,  //连接超时时间
+      receiveTimeout: 10000, //回调超时时间
 //      maxRedirects: 5,  //重定向最大次数。
-
       headers: {
         HttpHeaders.userAgentHeader: "dio",
         "api": "1.0.0",
@@ -45,12 +44,9 @@ class dioHttpUtil {
     );
 
     dio = new Dio(baseOptions);
-
-    dio.interceptors.add(LogInterceptor(responseBody: false)); //开启请求日志
-
+    dio.interceptors.add(LogInterceptor(responseBody: false)); //日志
+//    dio.interceptors.add(CookieManager(CookieJar())); //Cookie管理
   }
-
-
 
   doGet(url, {cancelToken}) async {
     print('doGet-url：$url ');
@@ -63,8 +59,10 @@ class dioHttpUtil {
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) {
         print('doGet-cancel! ' + e.message);
+        ToastUtil.toast('doPost-cancel!');
       }
       print('doGet-error::$e');
+      ToastUtil.toast('doGet-error:'+e.message);
     }
     return response;
   }
@@ -80,8 +78,10 @@ class dioHttpUtil {
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) {
         print('doPost-cancel! ' + e.message);
+        ToastUtil.toast('doPost-cancel!');
       }
-      print('doPost-error::$e');
+      print('doPost-error::$e.message');
+      ToastUtil.toast('doGet-error:'+e.message);
     }
     return response;
   }
@@ -98,8 +98,10 @@ class dioHttpUtil {
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) {
         print('requestJsonBody-cancel! ' + e.message);
+        ToastUtil.toast('doPost-cancel!');
       }
-      print('requestJsonBody-error::$e');
+      print('requestJsonBody-error::$e.message');
+      ToastUtil.toast('doGet-error:'+e.message);
     }
     return response;
   }
@@ -116,8 +118,10 @@ class dioHttpUtil {
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) {
         print('requestFormData-cancel! ' + e.message);
+        ToastUtil.toast('doPost-cancel!');
       }
-      print('requestFormData-error::$e');
+      print('requestFormData-error::$e.message');
+      ToastUtil.toast('doGet-error:'+e.message);
     }
     return response;
   }
@@ -135,8 +139,10 @@ class dioHttpUtil {
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) {
         print('downLoadFile-cancel! ' + e.message);
+        ToastUtil.toast('doPost-cancel!');
       }
-      print('downLoadFile-error::$e');
+      print('downLoadFile-error::$e.message');
+      ToastUtil.toast('doGet-error:'+e.message);
     }
     return response;
   }

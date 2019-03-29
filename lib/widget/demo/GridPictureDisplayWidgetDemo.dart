@@ -18,15 +18,15 @@ import 'package:simple_permissions/simple_permissions.dart';
 //常量定义
 const String name1 = 'display_demo';
 
-class DisplayDemoWidget extends StatefulWidget {
-  DisplayDemoWidget({Key key, this.title}) : super(key: key);
+class GridPictureDisplayWidgetDemo extends StatefulWidget {
+  GridPictureDisplayWidgetDemo({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  DisplayDemoWidgetState createState() => DisplayDemoWidgetState();
+  GridPictureDisplayWidgetDemoState createState() => GridPictureDisplayWidgetDemoState();
 }
 
-class DisplayDemoWidgetState extends State<DisplayDemoWidget>{
+class GridPictureDisplayWidgetDemoState extends State<GridPictureDisplayWidgetDemo>{
   ImageBean imageBean = new ImageBean();//保存数据的泛型实体
 
   @override

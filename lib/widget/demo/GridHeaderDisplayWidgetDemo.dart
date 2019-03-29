@@ -11,15 +11,15 @@ import 'package:flutter_picture_select/widget/picture/GridHeaderDisplayWidget.da
 //常量定义
 const String name1 = 'header_display_demo';
 
-class HeaderDisplayDemoWidget extends StatefulWidget {
-  HeaderDisplayDemoWidget({Key key, this.title}) : super(key: key);
+class GridHeaderDisplayWidgetDemo extends StatefulWidget {
+  GridHeaderDisplayWidgetDemo({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  HeaderDisplayDemoWidgetState createState() => HeaderDisplayDemoWidgetState();
+  GridHeaderDisplayWidgetDemoState createState() => GridHeaderDisplayWidgetDemoState();
 }
 
-class HeaderDisplayDemoWidgetState extends State<HeaderDisplayDemoWidget> {
+class GridHeaderDisplayWidgetDemoState extends State<GridHeaderDisplayWidgetDemo> {
   HeaderBean headerBean;
   ProgressDialog progressDialog;   //加载进度条可选添加
 

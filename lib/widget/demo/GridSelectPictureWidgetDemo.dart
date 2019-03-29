@@ -24,15 +24,15 @@ import 'package:simple_permissions/simple_permissions.dart';
 //常量定义
 const String name1 = 'select_demo';
 
-class SelectDemoWidget extends StatefulWidget {
-  SelectDemoWidget({Key key, this.title}) : super(key: key);
+class GridSelectPictureWidgetDemo extends StatefulWidget {
+  GridSelectPictureWidgetDemo({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  SelectDemoWidgetState createState() => SelectDemoWidgetState();
+  GridSelectPictureWidgetDemoState createState() => GridSelectPictureWidgetDemoState();
 }
 
-class SelectDemoWidgetState extends State<SelectDemoWidget>
+class GridSelectPictureWidgetDemoState extends State<GridSelectPictureWidgetDemo>
     with TickerProviderStateMixin
     implements BottomPickerListener {
   List<LocalImageBean> localImageBeanList;  //保存数据的泛型实体
