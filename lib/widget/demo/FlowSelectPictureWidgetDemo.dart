@@ -160,15 +160,15 @@ class FlowSelectPictureWidgetDemoState
 
   @override
   Widget build(BuildContext context) {
-    double boxMarginLeft = 18; //盒子左边距
-    double boxMarginTop = 14; //盒子顶边距
-    double boxMarginRight = 18; //盒子右边距
-    double boxMarginBottom = 14; //盒子底边距
+    double boxPaddingLeft = 5; //盒子左边距
+    double boxPaddingTop = 12; //盒子顶边距
+    double boxPaddingRight = 5; //盒子右边距
+    double boxPaddingBottom = 12; //盒子底边距
 
-    double itemWidth = 65; //图片宽度
-    double itemHeight = 65; //图片高度
-    double itemHorizontalSpacing = 18; //水平间距
-    double itemVerticalSpacing = 18; //垂直间距
+    double itemWidth = 58; //图片宽度
+    double itemHeight = 58 ; //图片高度
+    double itemHorizontalSpacing = 17; //水平间距
+    double itemVerticalSpacing = 17; //垂直间距
     double itemRoundArc = 5; //图片圆角弧度
 
     return Scaffold(
@@ -181,11 +181,11 @@ class FlowSelectPictureWidgetDemoState
             physics: BouncingScrollPhysics(),
             children: <Widget>[
               new Container(
-                color: Colors.white,
-                alignment: Alignment.center,
-                margin: EdgeInsets.fromLTRB(boxMarginLeft, boxMarginTop,
-                    boxMarginRight, boxMarginBottom),
-                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+//                color: Colors.green,
+//                alignment: Alignment.center,
+                padding: EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop,
+                    boxPaddingRight, boxPaddingBottom),
+                margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: new FlowPictureSelectWidget(
                     localImageBeanList,
                     itemWidth,
@@ -198,15 +198,15 @@ class FlowSelectPictureWidgetDemoState
                     deleteClick),
               ),
               new Container(
-                alignment: Alignment.center,
+//                alignment: Alignment.center,
                 color: Colors.white,
-                margin: EdgeInsets.fromLTRB(boxMarginLeft, boxMarginTop,
-                    boxMarginRight, boxMarginBottom),
-                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                margin: EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop,
+                    boxPaddingRight, boxPaddingBottom),
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: new FlowPictureSelectWidget(
                     localImageBeanList,
-                    90,
-                    90,
+                    82,
+                    82,
                     itemHorizontalSpacing,
                     itemVerticalSpacing,
                     itemRoundArc,
@@ -215,15 +215,15 @@ class FlowSelectPictureWidgetDemoState
                     deleteClick),
               ),
               new Container(
-                alignment: Alignment.topLeft,
+//                alignment: Alignment.topLeft,
                 color: Colors.white,
-                margin: EdgeInsets.fromLTRB(boxMarginLeft, boxMarginTop,
-                    boxMarginRight, boxMarginBottom),
-                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                margin: EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop,
+                    boxPaddingRight, boxPaddingBottom),
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: new FlowPictureSelectWidget(
                     localImageBeanList,
-                    146,
-                    146,
+                    130,
+                    130,
                     itemHorizontalSpacing,
                     itemVerticalSpacing,
                     itemRoundArc,

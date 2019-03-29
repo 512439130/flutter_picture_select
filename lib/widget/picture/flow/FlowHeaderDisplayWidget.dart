@@ -12,12 +12,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 //图片GridView展示功能
 class FlowHeaderDisplayWidget extends StatefulWidget {
-
   HeaderBean headerBean = new HeaderBean();
-  double count; //每行个数
-  double maxWidth; //最大宽度
-
-  FlowHeaderDisplayWidget(this.headerBean, this.count, this.maxWidth);
+  final double itemWidth;  //图片宽度
+  final double itemHeight; //图片高度
+  final double itemHorizontalSpacing; //水平间距
+  final double itemVerticalSpacing;  //垂直间距
+  final double itemRoundArc; //圆角弧度
+  FlowHeaderDisplayWidget(this.headerBean, this.itemWidth, this.itemHeight, this.itemHorizontalSpacing, this.itemVerticalSpacing, this.itemRoundArc, );
 
   @override
   _FlowHeaderDisplayWidgetState createState() =>
@@ -56,26 +57,20 @@ class _FlowHeaderDisplayWidgetState extends State<FlowHeaderDisplayWidget> {
 
   Widget networkImage(int id, String url, String name) {
     return new Container(
-        alignment: Alignment.center,
+//        alignment: Alignment.center,
 //            color: Colors.greenAccent,
+
         child: getNetImage(id, true, url, name));
   }
 
   Widget getNetImage(int id, bool isVisible, String url, String name) {
-    double imageWidthOrHeight;
-    double count = widget.count;
-    double maxWidth = widget.maxWidth;
-    double mItemSpacing = 4;
-    imageWidthOrHeight = (maxWidth / count) -
-        ((count) * (mItemSpacing / count * 2)) -
-        mItemSpacing * 1.5;
-    imageWidthOrHeight = imageWidthOrHeight - (imageWidthOrHeight / 2);
+    double imageWidth = widget.itemWidth;
+    double imageHeight = widget.itemHeight;
+    double fontSize = imageWidth / 3.5;
 
-    double fontSize = imageWidthOrHeight / 4;
-
-    print("count:" + count.toString());
-    print("mScreenWidth:" + maxWidth.toString());
-    print("imageWidthOrHeight:" + imageWidthOrHeight.toString());
+    print("imageWidth:" + imageWidth.toString());
+    print("imageHeight:" + imageHeight.toString());
+    print("fontSize:" + fontSize.toString());
 
     return new GestureDetector(
         onTap: () {
@@ -86,7 +81,6 @@ class _FlowHeaderDisplayWidgetState extends State<FlowHeaderDisplayWidget> {
         child: new Offstage(
           //使用Offstage 控制widget在tree中的显示和隐藏
           offstage: isVisible ? false : true,
-
           child: new Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
@@ -94,9 +88,8 @@ class _FlowHeaderDisplayWidgetState extends State<FlowHeaderDisplayWidget> {
                 child: new Container(
                   padding: EdgeInsets.all(0),
                   child: new CachedNetworkImage(
-                    width: imageWidthOrHeight,
-                    height: imageWidthOrHeight,
-
+                    width: imageWidth,
+                    height: imageHeight,
                     fit: BoxFit.cover,
                     fadeInCurve: Curves.ease,
                     fadeInDuration: Duration(milliseconds: 500),
@@ -110,14 +103,14 @@ class _FlowHeaderDisplayWidgetState extends State<FlowHeaderDisplayWidget> {
                 ),
               ),
               new Container(
-                padding: EdgeInsets.only(top: 5),
+                padding: EdgeInsets.only(top: 3),
                 child: new Text(
                   name,
                   style: new TextStyle(
-                      color: Colors.black,
+                      color: const Color(0xFF999999),
                       fontSize: fontSize,
                       fontStyle: FontStyle.normal,
-                      decorationColor: Colors.green,),
+                  ),
                 ),
               ),
             ],
@@ -127,42 +120,28 @@ class _FlowHeaderDisplayWidgetState extends State<FlowHeaderDisplayWidget> {
 
 //本地图片，（加号）
   Widget localImage() {
-    double addWidthOrHeight;
-    double padding;
-    double count = widget.count;
-    double maxWidth = widget.maxWidth;
-
-    double mItemSpacing = 4;
-    padding = (25 - (count * 3)).toDouble();
-    if (padding < 5) padding = 5;
-    addWidthOrHeight = ((maxWidth / count) -
-            ((count) * (mItemSpacing / count * 2)) -
-            mItemSpacing * 1.5) /
-        2;
-
-    print("count:" + count.toString());
-    print("padding:" + padding.toString());
-    print("mScreenWidth:" + maxWidth.toString());
-    print("addWidthOrHeight:" + addWidthOrHeight.toString());
+    double imageWidth = widget.itemWidth;
+    double imageHeight = widget.itemHeight;
+    double padding = imageWidth/3.5;
+    if (padding < 3) padding = 3;
+    print("localImage-imageWidth:" + imageWidth.toString());
+    print("localImage-imageHeight:" + imageHeight.toString());
+    print("localImage-padding:" + padding.toString());
 
     return new Stack(
-      alignment: Alignment.center, //指定未定位或部分定位widget的对齐方式
+//      alignment: Alignment.center, //指定未定位或部分定位widget的对齐方式
       overflow: Overflow.visible,
       children: <Widget>[
-        Positioned(
-          top: 0,
-          child: new Container(
+        new Container(
             color: const Color(0xFFFFFFFF),
             padding: EdgeInsets.all(padding),
-            width: addWidthOrHeight,
-            height: addWidthOrHeight,
-            child: new Image.asset('images/icon_add.png',
-                width: addWidthOrHeight,
-                height: addWidthOrHeight,
+            width: imageWidth,
+            height: imageHeight,
+            child: new Image.asset(
+                'images/icon_add.png',
                 fit: BoxFit.cover),
-          ),
         ),
-      ],
+      ]
     );
   }
 
@@ -174,23 +153,22 @@ class _FlowHeaderDisplayWidgetState extends State<FlowHeaderDisplayWidget> {
         physics: BouncingScrollPhysics(),
         children: <Widget>[
           new Container(
-            color: const Color(0xFFFFFFFF),
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-            child: new Center(
-                child: new GridView.count(
-                crossAxisCount: widget.count.toInt() * 2,
-                mainAxisSpacing: 10,//上下间距
-                crossAxisSpacing: 0,//左右间距
-                childAspectRatio: 2 / 3,//宽高比
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                primary: false,
-                shrinkWrap: true,
-                children: listWidget,
-            )),
+//              color: Colors.deepOrange,
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+            margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            child: new Wrap(
+              spacing: widget.itemHorizontalSpacing, // 主轴(水平)方向间距
+              runSpacing: widget.itemVerticalSpacing, // 纵轴（垂直）方向间距
+              textDirection: TextDirection.ltr, //从(左/右)边开始  表示水平方向子widget的布局顺序(是从左往右还是从右往左)  textDirection是alignment的参考系
+              alignment: WrapAlignment.start, //textDirection的正方向
+              verticalDirection: VerticalDirection.down, //down:表示从上到下 up:表示从下到上
+              runAlignment: WrapAlignment.start, //纵轴方向的对齐方式:top,start,bottom,end
+              children: listWidget,
+
+            ),
           ),
+
         ]);
   }
-
-
 }

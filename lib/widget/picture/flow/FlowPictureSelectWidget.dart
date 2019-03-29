@@ -130,7 +130,7 @@ class _FlowPictureSelectWidgetState extends State<FlowPictureSelectWidget>
 
   //sdcard图片，携带删除控制按钮
   Widget sdCardImage(int id, String path) {
-    double margin = widget.itemWidth/10;
+    double margin = widget.itemWidth/8;
     return new Stack(
 //      alignment: Alignment.center, //指定未定位或部分定位widget的对齐方式
       overflow: Overflow.visible,
@@ -169,7 +169,7 @@ class _FlowPictureSelectWidgetState extends State<FlowPictureSelectWidget>
         child: new ClipRRect(
           child: new Container(
 //            padding: const EdgeInsets.all(5),
-//            color: Colors.deepOrange,
+//            color: Colors.greenAccent,
             child: new Image.file(
               new File(path),
               width: imageWidth,
@@ -193,12 +193,10 @@ class _FlowPictureSelectWidgetState extends State<FlowPictureSelectWidget>
   Widget localImage() {
     double imageWidth = widget.itemWidth;
     double imageHeight = widget.itemHeight;
-    double padding = imageWidth / 5;
     double margin = widget.itemWidth/10;
 
     print("imageWidth:" + imageWidth.toString());
     print("imageHeight:" + imageHeight.toString());
-    print("padding:" + padding.toString());
 
 
     return new Stack(
@@ -206,7 +204,7 @@ class _FlowPictureSelectWidgetState extends State<FlowPictureSelectWidget>
       overflow: Overflow.visible,
       children: <Widget>[
         new Container(
-//            color: Colors.red,
+//            color: Colors.blueAccent,
           padding: EdgeInsets.all(margin),
             child: new GestureDetector(
               onTap: () {
@@ -215,12 +213,12 @@ class _FlowPictureSelectWidgetState extends State<FlowPictureSelectWidget>
               child: new ClipRRect(
                 child: new Container(
                   color: const Color(0xFFF7F8FA),
-                  padding: EdgeInsets.all(padding),
-                  width: imageWidth + padding/2 -7,
-                  height: imageWidth + padding/2 -7,
+                  alignment: Alignment.center,
+                  width: imageWidth ,
+                  height: imageWidth,
                   child: new Image.asset('images/icon_add.png',
-                      width: imageWidth,
-                      height: imageWidth,
+                      width: imageWidth/1.4,
+                      height: imageWidth/1.4,
                       fit: BoxFit.cover),
                 ),
                 //圆角
@@ -294,28 +292,24 @@ class _FlowPictureSelectWidgetState extends State<FlowPictureSelectWidget>
         shrinkWrap: true,
         physics: BouncingScrollPhysics(),
         children: <Widget>[
-          new Container(
-            color: const Color(0xFFFFFFFF),
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-            margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-            child: new Wrap(
-              spacing: widget.itemHorizontalSpacing,
-              // 主轴(水平)方向间距
-              runSpacing: widget.itemVerticalSpacing,
-              // 纵轴（垂直）方向间距
+         new Container(
+//              color: Colors.deepOrange,
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+              margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+              child: new Wrap(
+                spacing: widget.itemHorizontalSpacing, // 主轴(水平)方向间距
+                runSpacing: widget.itemVerticalSpacing, // 纵轴（垂直）方向间距
 
-              textDirection: TextDirection.ltr,
-              //从(左/右)边开始  表示水平方向子widget的布局顺序(是从左往右还是从右往左)  textDirection是alignment的参考系
-              alignment: WrapAlignment.start,
-              //textDirection的正方向
+                textDirection: TextDirection.ltr, //从(左/右)边开始  表示水平方向子widget的布局顺序(是从左往右还是从右往左)  textDirection是alignment的参考系
+                alignment: WrapAlignment.start, //textDirection的正方向
 
-              verticalDirection: VerticalDirection.down,
-              //down:表示从上到下 up:表示从下到上
-              runAlignment: WrapAlignment.center,
-              //纵轴方向的对齐方式:top,start,bottom,end
-              children: listWidget,
+                verticalDirection: VerticalDirection.down, //down:表示从上到下 up:表示从下到上
+                runAlignment: WrapAlignment.start, //纵轴方向的对齐方式:top,start,bottom,end
+                children: listWidget,
+              ),
             ),
-          ),
+
         ]);
   }
 

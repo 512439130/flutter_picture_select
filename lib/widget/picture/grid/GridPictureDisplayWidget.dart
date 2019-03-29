@@ -16,11 +16,13 @@ class GridPictureDisplayWidget extends StatefulWidget {
   ImageBean testBean;
   double count;  //每行个数
   double maxWidth;//最大宽度
-  double roundArc;//圆角弧度
+  final double itemHorizontalSpacing; //水平间距
+  final double itemVerticalSpacing;  //垂直间距
+  final double itemRoundArc; //圆角弧度
 
 
 
-  GridPictureDisplayWidget(this.testBean, this.count,this.maxWidth,this.roundArc);
+  GridPictureDisplayWidget(this.testBean, this.count,this.maxWidth,this.itemHorizontalSpacing, this.itemVerticalSpacing,this.itemRoundArc);
   @override
   _GridPictureDisplayWidgetState createState() => _GridPictureDisplayWidgetState();
 }
@@ -106,10 +108,10 @@ class _GridPictureDisplayWidgetState extends State<GridPictureDisplayWidget> {
           ),
           //圆角
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(widget.roundArc),
-            topRight: Radius.circular(widget.roundArc),
-            bottomLeft: Radius.circular(widget.roundArc),
-            bottomRight: Radius.circular(widget.roundArc),
+            topLeft: Radius.circular(widget.itemRoundArc),
+            topRight: Radius.circular(widget.itemRoundArc),
+            bottomLeft: Radius.circular(widget.itemRoundArc),
+            bottomRight: Radius.circular(widget.itemRoundArc),
           ),
         ),
       ),
@@ -133,10 +135,8 @@ class _GridPictureDisplayWidgetState extends State<GridPictureDisplayWidget> {
             child: new Center(
                 child: new GridView.count(
                   crossAxisCount: widget.count.toInt(),
-                  mainAxisSpacing: 0,
-                  //上下间距
-                  crossAxisSpacing: 0,
-                  //左右间距
+                  mainAxisSpacing: widget.itemVerticalSpacing, //上下间距
+                  crossAxisSpacing: widget.itemHorizontalSpacing, //左右间距
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   primary: false,
                   shrinkWrap: true,

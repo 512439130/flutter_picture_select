@@ -36,8 +36,6 @@ class _FlowPictureDisplayWidgetState extends State<FlowPictureDisplayWidget> {
     super.initState();
   }
 
-//  //初始化
-
   void setList() {
     print('setList');
     listWidget = new List<Widget>();
@@ -73,8 +71,7 @@ class _FlowPictureDisplayWidgetState extends State<FlowPictureDisplayWidget> {
     return new GestureDetector(
       onTap: () {
 //        ImageUtil.openLargeImage(context,url,Constant.image_type_network);
-        PictureUtil.openLargeImages(
-            context, imageUrls, Constant.image_type_network, id);
+        PictureUtil.openLargeImages(context, imageUrls, Constant.image_type_network, id);
       },
       child: new Offstage(
         //使用Offstage 控制widget在tree中的显示和隐藏
@@ -117,8 +114,9 @@ class _FlowPictureDisplayWidgetState extends State<FlowPictureDisplayWidget> {
         physics: BouncingScrollPhysics(),
         children: <Widget>[
           new Container(
-            color: const Color(0xFFFFFFFF),
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+//            color: Colors.deepOrangeAccent,
+            alignment: Alignment.centerLeft,  //保证内部为整体居左，未匹配单独图片靠左情况
+            padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),//无法居中，暂时给整体内部加左内边距
             margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: new Wrap(
               spacing: widget.itemHorizontalSpacing, // 主轴(水平)方向间距
