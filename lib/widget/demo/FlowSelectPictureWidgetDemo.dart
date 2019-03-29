@@ -12,6 +12,7 @@ import 'package:flutter_picture_select/util/ListUtil.dart';
 import 'package:flutter_picture_select/util/PermissionUtil.dart';
 import 'package:flutter_picture_select/util/PictureUtil.dart';
 import 'package:flutter_picture_select/util/ToastUtil.dart';
+import 'package:flutter_picture_select/widget/picture/flow/FlowPictureSelectWidget.dart';
 import 'package:flutter_picture_select/widget/picture/grid/GridPictureSelectWidget.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -19,23 +20,24 @@ import 'package:image_picker/image_picker.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:simple_permissions/simple_permissions.dart';
 
+const String name1 = 'FlowSelectPictureWidgetDemo';
 
-const String name1 = 'GridSelectPictureWidgetDemo';
-
-class GridSelectPictureWidgetDemo extends StatefulWidget {
-  GridSelectPictureWidgetDemo({Key key, this.title}) : super(key: key);
+class FlowSelectPictureWidgetDemo extends StatefulWidget {
+  FlowSelectPictureWidgetDemo({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  GridSelectPictureWidgetDemoState createState() => GridSelectPictureWidgetDemoState();
+  FlowSelectPictureWidgetDemoState createState() =>
+      FlowSelectPictureWidgetDemoState();
 }
 
-class GridSelectPictureWidgetDemoState extends State<GridSelectPictureWidgetDemo>
+class FlowSelectPictureWidgetDemoState
+    extends State<FlowSelectPictureWidgetDemo>
     with TickerProviderStateMixin
     implements BottomPickerListener {
-  List<LocalImageBean> localImageBeanList;  //保存数据的泛型实体
+  List<LocalImageBean> localImageBeanList; //保存数据的泛型实体
 
-  ProgressDialog progressDialog;   //加载进度条可选添加
+  ProgressDialog progressDialog; //加载进度条可选添加
 
   //底部拍照/相册功能
   BottomPickerHandler bottomPicker;
@@ -49,7 +51,7 @@ class GridSelectPictureWidgetDemoState extends State<GridSelectPictureWidgetDemo
     init();
   }
 
-  void init(){
+  void init() {
     localImageBeanList = new List<LocalImageBean>();
     initProgress();
     initBottomPicker();
@@ -62,7 +64,6 @@ class GridSelectPictureWidgetDemoState extends State<GridSelectPictureWidgetDemo
     progressDialog.setTextSize(16);
   }
 
-
   void initBottomPicker() {
     bottomAnimationController = new AnimationController(
       vsync: this,
@@ -71,8 +72,6 @@ class GridSelectPictureWidgetDemoState extends State<GridSelectPictureWidgetDemo
     bottomPicker = new BottomPickerHandler(this, bottomAnimationController);
     bottomPicker.init();
   }
-
-
 
   Future<void> asyncDeleteImage(int id) async {
     try {
@@ -139,7 +138,8 @@ class GridSelectPictureWidgetDemoState extends State<GridSelectPictureWidgetDemo
                     print("requestPermission-Camera$result2");
                     if (result2 == PermissionStatus.deniedNeverAsk) {
                       //setting
-                      ToastUtil.toast('由于用户您选择不在提醒，并且拒绝了权限，请您去系统设置修改相关权限后再进行功能尝试');
+                      ToastUtil.toast(
+                          '由于用户您选择不在提醒，并且拒绝了权限，请您去系统设置修改相关权限后再进行功能尝试');
                       PermissionUtil.openPermissionSetting();
                     } else if (result2 == PermissionStatus.authorized) {
                       bottomPicker.showDialog(context);
@@ -158,29 +158,82 @@ class GridSelectPictureWidgetDemoState extends State<GridSelectPictureWidgetDemo
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
+    double boxMarginLeft = 18; //盒子左边距
+    double boxMarginTop = 14; //盒子顶边距
+    double boxMarginRight = 18; //盒子右边距
+    double boxMarginBottom = 14; //盒子底边距
+
+    double itemWidth = 65; //图片宽度
+    double itemHeight = 65; //图片高度
+    double itemHorizontalSpacing = 18; //水平间距
+    double itemVerticalSpacing = 18; //垂直间距
+    double itemRoundArc = 5; //图片圆角弧度
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text(name1),
-        ),
-        body: new ListView(
-          physics: BouncingScrollPhysics(),
-          children: <Widget>[
-            GridPictureSelectWidget(localImageBeanList, 2,360,5, addClick, replaceClick, deleteClick),
-            GridPictureSelectWidget(localImageBeanList, 3,360,5, addClick, replaceClick, deleteClick),
-            GridPictureSelectWidget(localImageBeanList, 4,360,5, addClick, replaceClick, deleteClick),
-            GridPictureSelectWidget(localImageBeanList, 5,360,5, addClick, replaceClick, deleteClick),
-            GridPictureSelectWidget(localImageBeanList, 6,360,5, addClick, replaceClick, deleteClick),
-            GridPictureSelectWidget(localImageBeanList, 7,360,5, addClick, replaceClick, deleteClick),
-            GridPictureSelectWidget(localImageBeanList, 8,360,5, addClick, replaceClick, deleteClick),
-
-
-          ],
-        ));
+      appBar: AppBar(
+        title: Text(name1),
+      ),
+      body: new Container(
+//          color: Colors.greenAccent,
+          child: new ListView(
+            physics: BouncingScrollPhysics(),
+            children: <Widget>[
+              new Container(
+                color: Colors.white,
+                alignment: Alignment.center,
+                margin: EdgeInsets.fromLTRB(boxMarginLeft, boxMarginTop,
+                    boxMarginRight, boxMarginBottom),
+                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                child: new FlowPictureSelectWidget(
+                    localImageBeanList,
+                    itemWidth,
+                    itemHeight,
+                    itemHorizontalSpacing,
+                    itemVerticalSpacing,
+                    itemRoundArc,
+                    addClick,
+                    replaceClick,
+                    deleteClick),
+              ),
+              new Container(
+                alignment: Alignment.center,
+                color: Colors.white,
+                margin: EdgeInsets.fromLTRB(boxMarginLeft, boxMarginTop,
+                    boxMarginRight, boxMarginBottom),
+                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                child: new FlowPictureSelectWidget(
+                    localImageBeanList,
+                    90,
+                    90,
+                    itemHorizontalSpacing,
+                    itemVerticalSpacing,
+                    itemRoundArc,
+                    addClick,
+                    replaceClick,
+                    deleteClick),
+              ),
+              new Container(
+                alignment: Alignment.topLeft,
+                color: Colors.white,
+                margin: EdgeInsets.fromLTRB(boxMarginLeft, boxMarginTop,
+                    boxMarginRight, boxMarginBottom),
+                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                child: new FlowPictureSelectWidget(
+                    localImageBeanList,
+                    146,
+                    146,
+                    itemHorizontalSpacing,
+                    itemVerticalSpacing,
+                    itemRoundArc,
+                    addClick,
+                    replaceClick,
+                    deleteClick),
+              ),
+            ],
+          )),
+    );
   }
 
   Function addClick() {
@@ -193,8 +246,9 @@ class GridSelectPictureWidgetDemoState extends State<GridSelectPictureWidgetDemo
     return null;
   }
 
-  Function replaceClick( int id,List<String> imageUrls) {
-    PictureUtil.openLargeImages(context, imageUrls, Constant.image_type_sdcard, id);
+  Function replaceClick(int id, List<String> imageUrls) {
+    PictureUtil.openLargeImages(
+        context, imageUrls, Constant.image_type_sdcard, id);
     return null;
   }
 
@@ -229,5 +283,4 @@ class GridSelectPictureWidgetDemoState extends State<GridSelectPictureWidgetDemo
     });
     return null;
   }
-
 }

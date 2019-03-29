@@ -6,17 +6,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_picture_select/bean/ImageBean.dart';
-import 'package:flutter_picture_select/widget/picture/GridPictureDisplayWidget.dart';
+import 'package:flutter_picture_select/widget/picture/grid/GridPictureDisplayWidget.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:simple_permissions/simple_permissions.dart';
 
-//数据传递
-//原生&flutter互掉
-//常量定义
-const String name1 = 'display_demo';
+
+const String name1 = 'GridPictureDisplayWidgetDemo';
 
 class GridPictureDisplayWidgetDemo extends StatefulWidget {
   GridPictureDisplayWidgetDemo({Key key, this.title}) : super(key: key);

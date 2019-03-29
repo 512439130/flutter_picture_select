@@ -17,9 +17,8 @@ import 'package:oktoast/oktoast.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:simple_permissions/simple_permissions.dart';
 
-//网络请求（数据加载）
-//常量定义
-const String name1 = 'flutter_widget_network';
+
+const String name1 = 'NetworkWidget';
 
 class NetworkWidget extends StatefulWidget {
   NetworkWidget({Key key, this.title}) : super(key: key);

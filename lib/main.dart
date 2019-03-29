@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_picture_select/widget/demo/FlowPictureDisplayWidgetDemo.dart';
+import 'package:flutter_picture_select/widget/demo/FlowSelectPictureWidgetDemo.dart';
 import 'package:flutter_picture_select/widget/demo/NetworkDemo.dart';
 import 'package:flutter_picture_select/widget/demo/RefreshDemo.dart';
 import 'package:flutter_picture_select/widget/demo/GridPictureDisplayWidgetDemo.dart';
@@ -51,6 +53,8 @@ class MyApp extends StatelessWidget {
           '/router/widget/demo/GridSelectPictureWidgetDemo': (_) => new GridSelectPictureWidgetDemo(),
           '/router/widget/demo/GridPictureDisplayWidgetDemo': (_) => new GridPictureDisplayWidgetDemo(),
           '/router/widget/demo/GridHeaderDisplayWidgetDemo': (_) => new GridHeaderDisplayWidgetDemo(),
+          '/router/widget/demo/FlowPictureDisplayWidgetDemo': (_) => new FlowPictureDisplayWidgetDemo(),
+          '/router/widget/demo/FlowSelectPictureWidgetDemo': (_) => new FlowSelectPictureWidgetDemo(),
           '/router/widget/demo/RefreshDemo': (_) => new RefreshWidget(),
           '/router/widget/demo/NetworkDemo': (_) => new NetworkWidget(),
         },
@@ -109,6 +113,21 @@ class _MyHomePageState extends State<MyHomePage> {
               child: buildButton("GridSelectPictureWidget", Colors.white, Colors.deepOrangeAccent,
                   '/router/widget/demo/GridSelectPictureWidgetDemo'),
             ),
+
+            new Container(
+              color: const Color(0xFFFFFFFF),
+              margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+              child: buildButton("FlowPictureDisplayWidgetDemo", Colors.white, Colors.deepOrangeAccent,
+                  '/router/widget/demo/FlowPictureDisplayWidgetDemo'),
+            ),
+            new Container(
+              color: const Color(0xFFFFFFFF),
+              margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+              child: buildButton("FlowSelectPictureWidgetDemo", Colors.white, Colors.deepOrangeAccent,
+                  '/router/widget/demo/FlowSelectPictureWidgetDemo'),
+            ),
+
+
             new Container(
               color: const Color(0xFFFFFFFF),
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
@@ -121,6 +140,8 @@ class _MyHomePageState extends State<MyHomePage> {
               child: buildButton("NetworkWidget", Colors.white, Colors.deepOrangeAccent,
                   '/router/widget/demo/NetworkDemo'),
             ),
+
+
           ],
 
         ));

@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_picture_select/bean/HeaderBean.dart';
 import 'package:flutter_picture_select/widget/dialog/BottomPickerHandler.dart';
 import 'package:flutter_picture_select/widget/dialog/ProgressDialog.dart';
-import 'package:flutter_picture_select/widget/picture/GridHeaderDisplayWidget.dart';
+import 'package:flutter_picture_select/widget/picture/grid/GridHeaderDisplayWidget.dart';
 
-//数据传递
-//原生&flutter互掉
-//常量定义
-const String name1 = 'header_display_demo';
+
+const String name1 = 'GridHeaderDisplayWidgetDemo';
 
 class GridHeaderDisplayWidgetDemo extends StatefulWidget {
   GridHeaderDisplayWidgetDemo({Key key, this.title}) : super(key: key);
