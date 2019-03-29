@@ -1,23 +1,25 @@
 # flutter study ing...
 
 ### 1.ListView.Builder(无限列表 )实现（可根据数据更新状态）。
-* 1.下拉刷新。
-* 2.上拉加载。
+* 1. 下拉刷新。
+* 2. 上拉加载。
 
 ### 2.图片展示器（可根据需求参数计算适配每个item的大小）
-* 1.动态权限申请（兼容Android/iOS）。
-* 2.系统图片选择（裁剪可控）。
-* 3.系统照相机拍照（裁剪可控）。
-* 4.支持多图预览，渐现动画，占位符***更多功能在后续会继续扩展
-* 5.支持点击预览，页面跳转间动画，图片可手势操作（放大，缩小）。
-* 6.支持图片保存本地。
+* 1. 动态权限申请（兼容Android/iOS）。
+* 2. 系统图片选择（裁剪可控）。
+* 3. 系统照相机拍照（裁剪可控）。
+* 4. 支持多图预览，渐现动画，占位符***更多功能在后续会继续扩展
+* 5. 支持点击预览，页面跳转间动画，图片可手势操作（放大，缩小）。
+* 6. 支持图片保存本地。
 
 ####2.1 使用方法
 ### DEMO
-* 1.GridPictureSelectWidget（图片选择添加，删除，替换，支持拍照并裁剪）
+* 1. GridPictureSelectWidget（图片选择添加，删除，替换，支持拍照并裁剪）
 * 使用方法：参考view/SelectDemoWidget文件
-`@override
-   Widget build(BuildContext context) {
+* code:
+
+```
+Widget build(BuildContext context) {
      return Scaffold(
          appBar: AppBar(
            title: Text(name1),
@@ -36,24 +38,26 @@
              GridPictureSelectWidget(localImageBeanList, 8,360,5, addClick, replaceClick, deleteClick),
            ],
          ));
-   }
+}
 
-   Function addClick() {
+Function addClick() {
       return null;
-   }
+}
 
-   Function replaceClick( int id,List<String> imageUrls) {
+Function replaceClick( int id,List<String> imageUrls) {
       return null;
-   }
+}
 
-   Function deleteClick(int id) {
+Function deleteClick(int id) {
       return null;
-   }
-`
-* 2.GridPictureDisplayWidget（图片渐现，加载进度条占位符，支持图片下载保存到本地，大图展示（支持多图展示））
+}
+```
+* 2. GridPictureDisplayWidget（图片渐现，加载进度条占位符，支持图片下载保存到本地，大图展示（支持多图展示））
 * 使用方法：参考view/DisplayDemoWidget文件
-`@override
-   Widget build(BuildContext context) {
+* code:
+
+```
+Widget build(BuildContext context) {
      return Scaffold(
          appBar: AppBar(
            title: Text(name1),
@@ -70,10 +74,16 @@
              GridPictureDisplayWidget(imageBean, 6,360,5),
            ],
          ));
-   }`
-* 3.GridHeaderDisplayWidget（图片展示其，支持更多的样式自定义）
+}
+
+```
+
+* 3. GridHeaderDisplayWidget（图片展示其，支持更多的样式自定义）
 * 使用方法：参考view/HeaderDisplayDemoWidget文件
-`Widget build(BuildContext context) {
+* code:
+
+```
+Widget build(BuildContext context) {
      return Scaffold(
        backgroundColor: Colors.blueGrey,
          appBar: AppBar(
@@ -111,7 +121,9 @@
              ),
            ],
          ));
-   }`
+}
+
+```
 
 ### 3.网络请求工具类（基于dio）ing
 * 1.单例使用
@@ -120,8 +132,11 @@
 * 4.请求取消(CancelToken)
 * ...
 ####3.1 API
-* 1.Get
-`Future requestGET() async {
+* 1.Get(get请求)
+* code:
+
+```
+Future requestGET() async {
      String url = 'https://www.zbg.com/exchange/config/controller/website/MarketController/getMarketAreaListByWebId';
      CancelToken cancelToken = new CancelToken();
      Response response = await dioHttpUtil().doGet(url,cancelToken: cancelToken);
@@ -138,9 +153,14 @@
        ToastUtil.toast('response == null');
      }
 
-   }`
-* 2.Post
-`Future requestPOST() async {
+}
+```
+
+* 2.Post（post请求）
+* code:
+
+```
+Future requestPOST() async {
      String url = 'https://www.zbg.com/exchange/config/controller/website/MarketController/getMarketAreaListByWebId';
      CancelToken cancelToken = new CancelToken();
      Response response = await dioHttpUtil().doPost(url,cancelToken: cancelToken);
@@ -156,9 +176,14 @@
      }else{
        ToastUtil.toast('response == null');
      }
-   }`
-* 3.FormData(支持单/多文件携带)
-`String url = 'https://www.zbg.com/exchange/config/controller/website/MarketController/getMarketAreaListByWebId';
+}
+```
+
+* 3.FormData(携带参数请求，支持单/多文件携带)
+* code:
+
+```
+String url = 'https://www.zbg.com/exchange/config/controller/website/MarketController/getMarketAreaListByWebId';
      var jsonBody = '{\pageIndex\': 1, \'pageSize\': 10}';
      CancelToken cancelToken = new CancelToken();
      Response response = await dioHttpUtil().requestJsonBody(url, jsonBody: jsonBody,cancelToken: cancelToken);
@@ -173,9 +198,17 @@
        }
      }else{
        ToastUtil.toast('response == null');
-     }`
-* 4.jsonBody
-`String url = 'https://www.zbg.com/exchange/config/controller/website/MarketController/getMarketAreaListByWebId';
+}
+
+```
+
+
+
+* 4.jsonBody（携带jsonbody请求）
+* code:
+
+```
+String url = 'https://www.zbg.com/exchange/config/controller/website/MarketController/getMarketAreaListByWebId';
      CancelToken cancelToken = new CancelToken();
      FormData formData = new FormData.from({
        "name": "wendux",
@@ -193,9 +226,14 @@
        }
      }else{
        ToastUtil.toast('response == null');
-     }`
-* 5.downLoad
-`Future<void> downLoadFile() async {
+}
+```
+
+* 5.downLoad(文件下载)
+* code:
+
+```
+Future<void> downLoadFile() async {
      var sdcard = await getExternalStorageDirectory();
      String sdCardPath = sdcard.path;
      String directoryPath = sdCardPath+Constant.image_save_path;
@@ -219,7 +257,8 @@
      } catch (e) {
        print(e);
      }
-   }`
+}
+```
 
 
 
