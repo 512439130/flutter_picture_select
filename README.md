@@ -45,8 +45,9 @@
 * 5.适配（字体大小，宽高），自定义字体，国际化
 * 6.插件封装  ing
 
-# 学习链接
-1.[Flutter中文网](https://flutterchina.club/)
-1.[Flutter实战](https://book.flutterchina.club/)
+## 学习链接
+* 1.[Flutter中文网](https://flutterchina.club/)
+
+* 2.[Flutter实战](https://book.flutterchina.club/)
 
 ### 积少成多，全靠自觉
