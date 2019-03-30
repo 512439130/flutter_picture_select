@@ -29,6 +29,7 @@ dependencies:
   flutter_picker: ^1.0.10  #picker
   image_cropper: ^1.0.0 #裁剪
   dio: ^2.1.0    #网络请求库
+  flutter_screenutil: ^0.4.2  #屏幕适配库
 
 dev_dependencies:
   flutter_test:
@@ -49,3 +50,5 @@ flutter:
   assets:
           - images/icon_add.png
           - images/icon_close.png
+          - images/icon_circle.png
+          - images/icon_right.png

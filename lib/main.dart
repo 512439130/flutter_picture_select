@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_picture_select/widget/demo/CardWidgetDemo.dart';
 import 'package:flutter_picture_select/widget/demo/FlowHeaderDisplayWidgetDemo.dart';
 import 'package:flutter_picture_select/widget/demo/FlowPictureDisplayWidgetDemo.dart';
 import 'package:flutter_picture_select/widget/demo/FlowSelectPictureWidgetDemo.dart';
@@ -11,6 +12,9 @@ import 'package:flutter_picture_select/widget/demo/GridPictureDisplayWidgetDemo.
 import 'package:flutter_picture_select/widget/demo/GridHeaderDisplayWidgetDemo.dart';
 import 'package:flutter_picture_select/widget/demo/GridSelectPictureWidgetDemo.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+
 
 //常量定义
 const String name1 = 'flutter_widget';
@@ -59,6 +63,7 @@ class MyApp extends StatelessWidget {
           '/router/widget/demo/FlowHeaderDisplayWidgetDemo': (_) => new FlowHeaderDisplayWidgetDemo(),
           '/router/widget/demo/RefreshDemo': (_) => new RefreshWidget(),
           '/router/widget/demo/NetworkDemo': (_) => new NetworkWidget(),
+          '/router/widget/demo/CardWidgetDemo': (_) => new CardWidgetDemo(),
         },
       ),
     );
@@ -89,6 +94,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.instance = ScreenUtil(width: 1080, height: 1920,allowFontScaling: false)..init(context);
+    print('设备宽度:${ScreenUtil.screenWidth}'); //Device width
+    print('设备高度:${ScreenUtil.screenHeight}'); //Device height
+    print('设备的像素密度:${ScreenUtil.pixelRatio}'); //Device pixel density
+    print('底部安全区距离:${ScreenUtil.bottomBarHeight}'); //Bottom safe zone distance，suitable for buttons with full screen
+    print('状态栏高度:${ScreenUtil.statusBarHeight}px'); //Status bar height , Notch will be higher Unit px
+    print('实际宽度的dp与设计稿px的比例:${ScreenUtil.getInstance().scaleWidth}');
+    print('实际高度的dp与设计稿px的比例:${ScreenUtil.getInstance().scaleHeight}');
+    print('宽度和字体相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleWidth * ScreenUtil.pixelRatio}');
+    print('高度相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleHeight * ScreenUtil.pixelRatio}');
+    print('系统的字体缩放比例:${ScreenUtil.textScaleFactory}');
     return Scaffold(
         appBar: AppBar(
           title: Text(name1),
@@ -147,7 +163,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   '/router/widget/demo/NetworkDemo'),
             ),
 
-
+            new Container(
+              color: const Color(0xFFFFFFFF),
+              margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+              child: buildButton("CardWidget", Colors.white, Colors.deepOrangeAccent,
+                  '/router/widget/demo/CardWidgetDemo'),
+            ),
           ],
 
         ));

@@ -7,7 +7,8 @@ import 'package:flutter_picture_select/const/Constant.dart';
 import 'package:flutter_picture_select/util/ToastUtil.dart';
 import 'package:flutter_picture_select/util/dioHttpUtil.dart';
 import 'package:path_provider/path_provider.dart';
-
+import 'package:simple_permissions/simple_permissions.dart';
+import 'package:flutter_picture_select/util/PermissionUtil.dart';
 const String title = '多图片详情';
 const double _kMinFlingVelocity = 500.0; //放大缩小速率
 
@@ -45,7 +46,8 @@ class TouchImagesViewer extends StatelessWidget {
                 height: 30,
                 textColor: const Color(0xFFFFFFFF),
                 onPressed: () {
-                  saveImage();
+
+                  obtainPermission();
                 },
               ),
             ),
@@ -53,6 +55,29 @@ class TouchImagesViewer extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> obtainPermission() async {
+    try {
+      await Future.delayed(Duration(milliseconds: 500), () {
+          Future future1 = new Future(() => null);
+          future1.then((_) {
+            PermissionUtil.requestPermission(Permission.WriteExternalStorage)
+                .then((result) {
+              print("requestPermission-WriteExternalStorage$result");
+              if (result == PermissionStatus.deniedNeverAsk) {
+                //setting
+                ToastUtil.toast('由于用户您选择不在提醒，并且拒绝了权限，请您去系统设置修改相关权限后再进行功能尝试');
+                PermissionUtil.openPermissionSetting();
+              } else if (result == PermissionStatus.authorized) {
+                saveImage();
+              }
+          });
+        });
+      });
+    } catch (e) {
+      print("faild:$e.toString()");
+    }
   }
   Future saveImage() async {
     var sdcard = await getExternalStorageDirectory();

@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_picture_select/bean/ImageBean.dart';
 import 'package:flutter_picture_select/widget/picture/flow/FlowPictureDisplayWidget.dart';
 import 'package:flutter_picture_select/widget/picture/grid/GridPictureDisplayWidget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:image_picker/image_picker.dart';
@@ -49,15 +50,15 @@ class FlowPictureDisplayWidgetDemoState
 
   @override
   Widget build(BuildContext context) {
-    double boxPaddingLeft = 10;//盒子左边距
-    double boxPaddingTop = 14;//盒子顶边距
-    double boxPaddingRight = 10;//盒子右边距
-    double boxPaddingBottom = 14;//盒子底边距
-    double itemWidth = 57;  //图片宽度
-    double itemHeight = 57; //图片高度
-    double itemHorizontalSpacing = 12; //水平间距
-    double itemVerticalSpacing = 12;  //垂直间距
-    double itemRoundArc = 5; //图片圆角弧度
+    double boxPaddingLeft = ScreenUtil.getInstance().setHeight(10); //盒子左边距
+    double boxPaddingTop = ScreenUtil.getInstance().setHeight(14); //盒子顶边距
+    double boxPaddingRight = ScreenUtil.getInstance().setHeight(10); //盒子右边距
+    double boxPaddingBottom = ScreenUtil.getInstance().setHeight(14); //盒子底边距
+    double itemHorizontalSpacing = ScreenUtil.getInstance().setHeight(12); //水平间距
+    double itemVerticalSpacing = ScreenUtil.getInstance().setHeight(12); //垂直间距
+    double itemRoundArc = ScreenUtil.getInstance().setHeight(5); //图片圆角弧度
+
+    double fontSize = ScreenUtil.getInstance().setSp(42);
     return Scaffold(
         appBar: AppBar(
           title: Text(name1),
@@ -65,6 +66,7 @@ class FlowPictureDisplayWidgetDemoState
         body: new ListView(
           physics: BouncingScrollPhysics(),
           children: <Widget>[
+            //5
             new Container(
               color: Colors.white,
               padding: EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
@@ -93,7 +95,7 @@ class FlowPictureDisplayWidgetDemoState
                           child: new Text(
                             "图         片",
                             style: new TextStyle(
-                              fontSize: 16,
+                              fontSize: fontSize,
                             ),
                           ),
                         ),
@@ -103,7 +105,7 @@ class FlowPictureDisplayWidgetDemoState
                         child: new Container(
                           alignment: Alignment.topLeft,
                           child: new FlowPictureDisplayWidget(
-                              imageBean, 43, 43, itemHorizontalSpacing, itemVerticalSpacing, itemRoundArc),
+                              imageBean, ScreenUtil.getInstance().setHeight(157), ScreenUtil.getInstance().setHeight(157), itemHorizontalSpacing, itemVerticalSpacing, itemRoundArc),
                         ),
                       ),
                     ],
@@ -111,6 +113,8 @@ class FlowPictureDisplayWidgetDemoState
                 ],
               ),
             ),
+
+            //4
             new Container(
               color: Colors.white,
               padding: EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
@@ -139,7 +143,7 @@ class FlowPictureDisplayWidgetDemoState
                           child: new Text(
                             "图         片",
                             style: new TextStyle(
-                              fontSize: 16,
+                              fontSize: fontSize,
                             ),
                           ),
                         ),
@@ -149,7 +153,7 @@ class FlowPictureDisplayWidgetDemoState
                         child: new Container(
                           alignment: Alignment.topLeft,
                           child: new FlowPictureDisplayWidget(
-                              imageBean, itemWidth, itemHeight, itemHorizontalSpacing, itemVerticalSpacing, itemRoundArc),
+                              imageBean, ScreenUtil.getInstance().setHeight(199), ScreenUtil.getInstance().setHeight(199), itemHorizontalSpacing, itemVerticalSpacing, itemRoundArc),
                         ),
                       ),
                     ],
@@ -158,6 +162,7 @@ class FlowPictureDisplayWidgetDemoState
               ),
             ),
 
+            //3
             new Container(
               color: Colors.white,
               padding: EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
@@ -186,7 +191,7 @@ class FlowPictureDisplayWidgetDemoState
                           child: new Text(
                             "图         片",
                             style: new TextStyle(
-                              fontSize: 16,
+                              fontSize: fontSize,
                             ),
                           ),
                         ),
@@ -196,7 +201,7 @@ class FlowPictureDisplayWidgetDemoState
                         child: new Container(
                           alignment: Alignment.topLeft,
                           child: new FlowPictureDisplayWidget(
-                              imageBean, 80, 80, itemHorizontalSpacing, itemVerticalSpacing, itemRoundArc),
+                              imageBean, ScreenUtil.getInstance().setHeight(269), ScreenUtil.getInstance().setHeight(269), itemHorizontalSpacing, itemVerticalSpacing, itemRoundArc),
                         ),
                       ),
                     ],
@@ -205,7 +210,7 @@ class FlowPictureDisplayWidgetDemoState
               ),
             ),
 
-
+            //2
             new Container(
 //              color: Colors.blue,
               padding: EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
@@ -234,7 +239,7 @@ class FlowPictureDisplayWidgetDemoState
                           child: new Text(
                             "图         片",
                             style: new TextStyle(
-                              fontSize: 16,
+                              fontSize: fontSize,
                             ),
                           ),
                         ),
@@ -244,7 +249,7 @@ class FlowPictureDisplayWidgetDemoState
                         child: new Container(
 //                          color: Colors.green,
 //                          alignment: Alignment.topLeft,
-                          child: new FlowPictureDisplayWidget(imageBean, 125, 125, itemHorizontalSpacing, itemVerticalSpacing, itemRoundArc),
+                          child: new FlowPictureDisplayWidget(imageBean, ScreenUtil.getInstance().setHeight(410), ScreenUtil.getInstance().setHeight(410), itemHorizontalSpacing, itemVerticalSpacing, itemRoundArc),
                         ),
                       ),
                     ],

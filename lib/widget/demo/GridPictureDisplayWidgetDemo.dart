@@ -7,6 +7,7 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_picture_select/bean/ImageBean.dart';
 import 'package:flutter_picture_select/widget/picture/grid/GridPictureDisplayWidget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:image_picker/image_picker.dart';
@@ -59,7 +60,7 @@ class GridPictureDisplayWidgetDemoState extends State<GridPictureDisplayWidgetDe
     double itemHorizontalSpacing = 12; //水平间距
     double itemVerticalSpacing = 12;  //垂直间距
     double itemRoundArc = 5; //图片圆角弧度
-    double parentWidth = 300;
+    double parentWidth = ScreenUtil.getInstance().setWidth(1440);
     print("parentWidth:" + parentWidth.toString());
     return Scaffold(
         appBar: AppBar(

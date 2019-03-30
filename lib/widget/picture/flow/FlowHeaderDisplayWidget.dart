@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_picture_select/bean/HeaderBean.dart';
 import 'package:flutter_picture_select/const/Constant.dart';
 import 'package:flutter_picture_select/util/PictureUtil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:oktoast/oktoast.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -17,8 +18,9 @@ class FlowHeaderDisplayWidget extends StatefulWidget {
   final double itemHeight; //图片高度
   final double itemHorizontalSpacing; //水平间距
   final double itemVerticalSpacing;  //垂直间距
-  final double itemRoundArc; //圆角弧度
-  FlowHeaderDisplayWidget(this.headerBean, this.itemWidth, this.itemHeight, this.itemHorizontalSpacing, this.itemVerticalSpacing, this.itemRoundArc, );
+  final String intervalType; //间隔类型
+  final String intervalUrl; //间隔图访问Url
+  FlowHeaderDisplayWidget(this.headerBean, this.itemWidth, this.itemHeight, this.itemHorizontalSpacing, this.itemVerticalSpacing, this.intervalType, this.intervalUrl );
 
   @override
   _FlowHeaderDisplayWidgetState createState() =>
@@ -65,8 +67,8 @@ class _FlowHeaderDisplayWidgetState extends State<FlowHeaderDisplayWidget> {
 
   Widget getNetImage(int id, bool isVisible, String url, String name) {
     double imageWidth = widget.itemWidth;
-    double imageHeight = widget.itemHeight;
-    double fontSize = imageWidth / 3.5;
+    double imageHeight = widget.itemWidth;
+    double fontSize = imageWidth / 4;
 
     print("imageWidth:" + imageWidth.toString());
     print("imageHeight:" + imageHeight.toString());
@@ -103,7 +105,7 @@ class _FlowHeaderDisplayWidgetState extends State<FlowHeaderDisplayWidget> {
                 ),
               ),
               new Container(
-                padding: EdgeInsets.only(top: 3),
+                padding: EdgeInsets.only(top: ScreenUtil.getInstance().setHeight(3)),
                 child: new Text(
                   name,
                   style: new TextStyle(
@@ -120,26 +122,36 @@ class _FlowHeaderDisplayWidgetState extends State<FlowHeaderDisplayWidget> {
 
 //本地图片，（加号）
   Widget localImage() {
-    double imageWidth = widget.itemWidth;
-    double imageHeight = widget.itemHeight;
-    double padding = imageWidth/3.5;
-    if (padding < 3) padding = 3;
-    print("localImage-imageWidth:" + imageWidth.toString());
-    print("localImage-imageHeight:" + imageHeight.toString());
-    print("localImage-padding:" + padding.toString());
+    double width = widget.itemWidth;
+    double height = widget.itemWidth;
+
+    double intervalWidth;
+    double intervalHeight;
+    if(widget.intervalType == Constant.header_type_add){
+      intervalWidth = width /2;
+      intervalHeight = height /2;
+    }else if(widget.intervalType == Constant.header_type_right){
+      intervalWidth = width/3.5;
+      intervalHeight = height/2;
+    }
+
+    print("localImage-imageWidth:" + width.toString());
+    print("localImage-imageHeight:" + height.toString());
 
     return new Stack(
 //      alignment: Alignment.center, //指定未定位或部分定位widget的对齐方式
       overflow: Overflow.visible,
       children: <Widget>[
         new Container(
-            color: const Color(0xFFFFFFFF),
-            padding: EdgeInsets.all(padding),
-            width: imageWidth,
-            height: imageHeight,
-            child: new Image.asset(
-                'images/icon_add.png',
-                fit: BoxFit.cover),
+//            color: const Color(0xFFF23FFFF),
+            alignment: Alignment.center,
+            width: width,
+            height: height,
+            child: new Image.asset(widget.intervalUrl,
+              width: intervalWidth,
+              height: intervalHeight,
+                fit: BoxFit.cover,
+            ),
         ),
       ]
     );
@@ -155,7 +167,7 @@ class _FlowHeaderDisplayWidgetState extends State<FlowHeaderDisplayWidget> {
           new Container(
 //              color: Colors.deepOrange,
             alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+            padding: EdgeInsets.fromLTRB(ScreenUtil.getInstance().setHeight(5), 0, 0, 0),
             margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: new Wrap(
               spacing: widget.itemHorizontalSpacing, // 主轴(水平)方向间距

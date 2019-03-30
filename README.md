@@ -608,18 +608,18 @@ Function deleteClick(int id) {
 
 ```
 
-### 3.FlowHeaderDisplayWidget（图片展示器，支持更多的样式自定义:头像+加号形式）
+### 3.FlowHeaderDisplayWidget（图片展示器，支持更多的样式自定义:头像+间隔图像）
+### 3.1FlowHeaderDisplayWidget（add类型）
 
 ```
 @override
   Widget build(BuildContext context) {
-    double boxPaddingLeft = 5; //盒子左边距
-    double boxPaddingTop = 12; //盒子顶边距
-    double boxPaddingRight = 5; //盒子右边距
-    double boxPaddingBottom = 12; //盒子底边距
-    double itemHorizontalSpacing = 5; //水平间距
-    double itemVerticalSpacing = 5; //垂直间距
-    double itemRoundArc = 5; //图片圆角弧度
+    double boxPaddingLeft = ScreenUtil.getInstance().setHeight(5); //盒子左边距
+    double boxPaddingTop = ScreenUtil.getInstance().setHeight(12); //盒子顶边距
+    double boxPaddingRight = ScreenUtil.getInstance().setHeight(5); //盒子右边距
+    double boxPaddingBottom = ScreenUtil.getInstance().setHeight(12); //盒子底边距
+    double itemHorizontalSpacing = ScreenUtil.getInstance().setHeight(5); //水平间距
+    double itemVerticalSpacing = ScreenUtil.getInstance().setHeight(5); //垂直间距
     return Scaffold(
       backgroundColor: Colors.blueGrey,
         appBar: AppBar(
@@ -628,34 +628,103 @@ Function deleteClick(int id) {
         body: new ListView(
           physics: BouncingScrollPhysics(),
           children: <Widget>[
+            //add
+            //每行6个item
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
-              child: FlowHeaderDisplayWidget(headerBean,38, 38, itemHorizontalSpacing, itemVerticalSpacing, itemRoundArc),
-            ),
-            new Container(
-              color:Colors.white,
-              padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
-              child: FlowHeaderDisplayWidget(headerBean,52, 52, itemHorizontalSpacing, itemVerticalSpacing, itemRoundArc),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(92), ScreenUtil.getInstance().setHeight(92), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_add,'images/icon_add.png'),
             ),
 
+            //每行5个item
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
-              child: FlowHeaderDisplayWidget(headerBean,81, 81, itemHorizontalSpacing, itemVerticalSpacing, itemRoundArc),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(113), ScreenUtil.getInstance().setHeight(113), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_add,'images/icon_add.png'),
             ),
+
+            //每行4个item
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
-              child: FlowHeaderDisplayWidget(headerBean,165, 165, itemHorizontalSpacing, itemVerticalSpacing, itemRoundArc),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(147), ScreenUtil.getInstance().setHeight(146), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_add,'images/icon_add.png'),
+            ),
+            //每行3个header
+            new Container(
+              color:Colors.white,
+              padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(209), ScreenUtil.getInstance().setHeight(209), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_add,'images/icon_add.png'),
+            ),
+
+            //每行2个header
+            new Container(
+              color:Colors.white,
+              padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(351), ScreenUtil.getInstance().setHeight(351), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_add,'images/icon_add.png'),
             ),
           ],
         ));
-  }
 
 ```
 
+### 3.2FlowHeaderDisplayWidget（right类型）
 
+```
+@override
+  Widget build(BuildContext context) {
+    double boxPaddingLeft = ScreenUtil.getInstance().setHeight(5); //盒子左边距
+    double boxPaddingTop = ScreenUtil.getInstance().setHeight(12); //盒子顶边距
+    double boxPaddingRight = ScreenUtil.getInstance().setHeight(5); //盒子右边距
+    double boxPaddingBottom = ScreenUtil.getInstance().setHeight(12); //盒子底边距
+    double itemHorizontalSpacing = ScreenUtil.getInstance().setHeight(5); //水平间距
+    double itemVerticalSpacing = ScreenUtil.getInstance().setHeight(5); //垂直间距
+    return Scaffold(
+      backgroundColor: Colors.blueGrey,
+        appBar: AppBar(
+          title: Text(name1),
+        ),
+        body: new ListView(
+          physics: BouncingScrollPhysics(),
+          children: <Widget>[
+            //right
+            //每行6个item
+            new Container(
+              color:Colors.white,
+              padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(83), ScreenUtil.getInstance().setHeight(83), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_right,'images/icon_right.png'),
+            ),
+
+            //每行5个item
+            new Container(
+              color:Colors.white,
+              padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(101), ScreenUtil.getInstance().setHeight(101), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_right,'images/icon_right.png'),
+            ),
+
+            //每行4个item
+            new Container(
+              color:Colors.white,
+              padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(128), ScreenUtil.getInstance().setHeight(128), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_right,'images/icon_right.png'),
+            ),
+            //每行3个header
+            new Container(
+              color:Colors.white,
+              padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(173), ScreenUtil.getInstance().setHeight(173), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_right,'images/icon_right.png'),
+            ),
+
+            //每行2个header
+            new Container(
+              color:Colors.white,
+              padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(262), ScreenUtil.getInstance().setHeight(262), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_right,'images/icon_right.png'),
+            ),
+
+          ],
+        ));
+
+```
 
 
 # Other
@@ -891,19 +960,20 @@ Future<void> obtainPermission() async {
 ## 会持续学习，不断完善
 ### 更新日志 new
 * 1.下拉刷新，上拉加载 complete
-* 2.权限申请 complete
+* 2.权限申请 complete complete
 * 3.图片Widget封装 complete
 * 4.网络请求封装（dio）ing
 * 5.文件存取  complete
 * 6.页面跳转并传参（路由）styudy
 * 7.native跳转并传参（native《=》flutter） styudy
-* 8.适配（字体大小，宽高），自定义字体，国际化 styudy
+* 8.适配（字体大小，宽高），自定义字体，国际化 styudy（屏幕适配：complete）
 * 9.插件封装(widget,util)  ing
 
 
 * insert
-* 新添Flow（流式布局）的图片构造器
-
+* 1.Flow（流式布局）的图片构造器 bug修复
+* 2.header类型分离为两种情况
+* 3.增加屏幕适配方案，适配Picture全部功能
 
 
 

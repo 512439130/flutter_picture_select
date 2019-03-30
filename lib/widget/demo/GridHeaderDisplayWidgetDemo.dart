@@ -2,9 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_picture_select/bean/HeaderBean.dart';
+import 'package:flutter_picture_select/const/Constant.dart';
 import 'package:flutter_picture_select/widget/dialog/BottomPickerHandler.dart';
 import 'package:flutter_picture_select/widget/dialog/ProgressDialog.dart';
 import 'package:flutter_picture_select/widget/picture/grid/GridHeaderDisplayWidget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 const String name1 = 'GridHeaderDisplayWidgetDemo';
@@ -49,6 +51,17 @@ class GridHeaderDisplayWidgetDemoState extends State<GridHeaderDisplayWidgetDemo
 
   @override
   Widget build(BuildContext context) {
+    double parentWidth = ScreenUtil.getInstance().setWidth(1440);
+    print('设备宽度:${ScreenUtil.screenWidth}'); //Device width
+    print('设备高度:${ScreenUtil.screenHeight}'); //Device height
+    print('设备的像素密度:${ScreenUtil.pixelRatio}'); //Device pixel density
+    print('底部安全区距离:${ScreenUtil.bottomBarHeight}'); //Bottom safe zone distance，suitable for buttons with full screen
+    print('状态栏高度:${ScreenUtil.statusBarHeight}px'); //Status bar height , Notch will be higher Unit px
+    print('实际宽度的dp与设计稿px的比例:${ScreenUtil.getInstance().scaleWidth}');
+    print('实际高度的dp与设计稿px的比例:${ScreenUtil.getInstance().scaleHeight}');
+    print('宽度和字体相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleWidth * ScreenUtil.pixelRatio}');
+    print('高度相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleHeight * ScreenUtil.pixelRatio}');
+    print('系统的字体缩放比例:${ScreenUtil.textScaleFactory}');
     return Scaffold(
       backgroundColor: Colors.blueGrey,
         appBar: AppBar(
@@ -60,27 +73,54 @@ class GridHeaderDisplayWidgetDemoState extends State<GridHeaderDisplayWidgetDemo
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
-              child: GridHeaderDisplayWidget(headerBean, 3,340),
+              child: GridHeaderDisplayWidget(headerBean, 3,parentWidth,Constant.header_type_right,'images/icon_right.png'),
             ),
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
-              child: GridHeaderDisplayWidget(headerBean, 4,340),
+              child: GridHeaderDisplayWidget(headerBean, 4,parentWidth,Constant.header_type_right,'images/icon_right.png'),
             ),
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
-              child: GridHeaderDisplayWidget(headerBean, 5,340),
+              child: GridHeaderDisplayWidget(headerBean, 5,parentWidth,Constant.header_type_right,'images/icon_right.png'),
             ),
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
-              child: GridHeaderDisplayWidget(headerBean, 6,340),
+              child: GridHeaderDisplayWidget(headerBean, 6,parentWidth,Constant.header_type_right,'images/icon_right.png'),
             ),
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
-              child: GridHeaderDisplayWidget(headerBean, 7,340),
+              child: GridHeaderDisplayWidget(headerBean, 7,parentWidth,Constant.header_type_right,'images/icon_right.png'),
+            ),
+
+
+            new Container(
+              color:Colors.white,
+              padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
+              child: GridHeaderDisplayWidget(headerBean, 3,parentWidth,Constant.header_type_add,'images/icon_add.png'),
+            ),
+            new Container(
+              color:Colors.white,
+              padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
+              child: GridHeaderDisplayWidget(headerBean, 4,parentWidth,Constant.header_type_add,'images/icon_add.png'),
+            ),
+            new Container(
+              color:Colors.white,
+              padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
+              child: GridHeaderDisplayWidget(headerBean, 5,parentWidth,Constant.header_type_add,'images/icon_add.png'),
+            ),
+            new Container(
+              color:Colors.white,
+              padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
+              child: GridHeaderDisplayWidget(headerBean, 6,parentWidth,Constant.header_type_add,'images/icon_add.png'),
+            ),
+            new Container(
+              color:Colors.white,
+              padding:EdgeInsets.fromLTRB(10, 10, 10, 10),
+              child: GridHeaderDisplayWidget(headerBean, 7,parentWidth,Constant.header_type_add,'images/icon_add.png'),
             ),
           ],
         ));

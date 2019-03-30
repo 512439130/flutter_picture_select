@@ -236,11 +236,9 @@ class _NetworkWidgetState extends State<NetworkWidget> {
   Future<void> downLoadFile() async {
     //无则创建文件夹，有则直接保存
     var sdcard = await getExternalStorageDirectory();
-    String sdCardPath = sdcard.path;
-    String directoryPath = sdCardPath + Constant.image_save_path;
+    String directoryPath = sdcard.path + Constant.image_save_path;
     print("directoryPath:" + directoryPath);
-    var directory = await new Directory(directoryPath)
-        .create(recursive: true); ////如果有子文件夹，需要设置recursive: true
+    var directory = await new Directory(directoryPath).create(recursive: true); ////如果有子文件夹，需要设置recursive: true
     //absolute返回path为绝对路径的Directory对象
     String path = directory.absolute.path;
     print("path:" + path);

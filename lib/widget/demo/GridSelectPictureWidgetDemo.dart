@@ -13,6 +13,7 @@ import 'package:flutter_picture_select/util/PermissionUtil.dart';
 import 'package:flutter_picture_select/util/PictureUtil.dart';
 import 'package:flutter_picture_select/util/ToastUtil.dart';
 import 'package:flutter_picture_select/widget/picture/grid/GridPictureSelectWidget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:image_picker/image_picker.dart';
@@ -162,7 +163,8 @@ class GridSelectPictureWidgetDemoState extends State<GridSelectPictureWidgetDemo
 
   @override
   Widget build(BuildContext context) {
-
+    double parentWidth = ScreenUtil.getInstance().setWidth(1440);
+    double itemRoundArc = ScreenUtil.getInstance().setHeight(5); //图片圆角弧度
     return Scaffold(
         appBar: AppBar(
           title: Text(name1),
@@ -170,15 +172,13 @@ class GridSelectPictureWidgetDemoState extends State<GridSelectPictureWidgetDemo
         body: new ListView(
           physics: BouncingScrollPhysics(),
           children: <Widget>[
-            GridPictureSelectWidget(localImageBeanList, 2,360,5, addClick, replaceClick, deleteClick),
-            GridPictureSelectWidget(localImageBeanList, 3,360,5, addClick, replaceClick, deleteClick),
-            GridPictureSelectWidget(localImageBeanList, 4,360,5, addClick, replaceClick, deleteClick),
-            GridPictureSelectWidget(localImageBeanList, 5,360,5, addClick, replaceClick, deleteClick),
-            GridPictureSelectWidget(localImageBeanList, 6,360,5, addClick, replaceClick, deleteClick),
-            GridPictureSelectWidget(localImageBeanList, 7,360,5, addClick, replaceClick, deleteClick),
-            GridPictureSelectWidget(localImageBeanList, 8,360,5, addClick, replaceClick, deleteClick),
-
-
+            GridPictureSelectWidget(localImageBeanList, 2,parentWidth,itemRoundArc, addClick, replaceClick, deleteClick),
+            GridPictureSelectWidget(localImageBeanList, 3,parentWidth,itemRoundArc, addClick, replaceClick, deleteClick),
+            GridPictureSelectWidget(localImageBeanList, 4,parentWidth,itemRoundArc, addClick, replaceClick, deleteClick),
+            GridPictureSelectWidget(localImageBeanList, 5,parentWidth,itemRoundArc, addClick, replaceClick, deleteClick),
+            GridPictureSelectWidget(localImageBeanList, 6,parentWidth,itemRoundArc, addClick, replaceClick, deleteClick),
+            GridPictureSelectWidget(localImageBeanList, 7,parentWidth,itemRoundArc, addClick, replaceClick, deleteClick),
+            GridPictureSelectWidget(localImageBeanList, 8,parentWidth,itemRoundArc, addClick, replaceClick, deleteClick),
           ],
         ));
   }
