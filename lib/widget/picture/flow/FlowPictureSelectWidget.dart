@@ -26,10 +26,7 @@ class FlowPictureSelectWidget extends StatefulWidget {
   final Function(int id, List<String> urls) onReplacePress; //替换回调
   final Function(int) onDeletePress; //删除按钮回调
 
-  FlowPictureSelectWidget(this.localImageBeanList, this.itemWidth,
-      this.itemHeight, this.itemHorizontalSpacing, this.itemVerticalSpacing,
-      this.itemRoundArc, this.onAddPress, this.onReplacePress,
-      this.onDeletePress);
+  FlowPictureSelectWidget(this.localImageBeanList, this.itemWidth, this.itemHeight, this.itemHorizontalSpacing, this.itemVerticalSpacing, this.itemRoundArc, this.onAddPress, this.onReplacePress, this.onDeletePress);
 
   @override
   _FlowPictureSelectWidgetState createState() =>

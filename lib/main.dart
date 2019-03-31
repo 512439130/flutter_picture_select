@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_picture_select/widget/demo/CardWidgetDemo.dart';
+import 'package:flutter_picture_select/widget/demo/FileDisplayWidgetDemo.dart';
 import 'package:flutter_picture_select/widget/demo/FlowHeaderDisplayWidgetDemo.dart';
 import 'package:flutter_picture_select/widget/demo/FlowPictureDisplayWidgetDemo.dart';
 import 'package:flutter_picture_select/widget/demo/FlowSelectPictureWidgetDemo.dart';
@@ -61,6 +62,8 @@ class MyApp extends StatelessWidget {
           '/router/widget/demo/FlowPictureDisplayWidgetDemo': (_) => new FlowPictureDisplayWidgetDemo(),
           '/router/widget/demo/FlowSelectPictureWidgetDemo': (_) => new FlowSelectPictureWidgetDemo(),
           '/router/widget/demo/FlowHeaderDisplayWidgetDemo': (_) => new FlowHeaderDisplayWidgetDemo(),
+          '/router/widget/demo/FileDisplayWidgetDemo': (_) => new FileDisplayWidgetDemo(),
+
           '/router/widget/demo/RefreshDemo': (_) => new RefreshWidget(),
           '/router/widget/demo/NetworkDemo': (_) => new NetworkWidget(),
           '/router/widget/demo/CardWidgetDemo': (_) => new CardWidgetDemo(),
@@ -150,6 +153,14 @@ class _MyHomePageState extends State<MyHomePage> {
               child: buildButton("FlowHeaderDisplayWidgetDemo", Colors.white, Colors.deepOrangeAccent,
               '/router/widget/demo/FlowHeaderDisplayWidgetDemo'),
             ),
+
+            new Container(
+              color: const Color(0xFFFFFFFF),
+              margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+              child: buildButton("FileDisplayWidgetDemo", Colors.white, Colors.deepOrangeAccent,
+                  '/router/widget/demo/FileDisplayWidgetDemo'),
+            ),
+
             new Container(
               color: const Color(0xFFFFFFFF),
               margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),

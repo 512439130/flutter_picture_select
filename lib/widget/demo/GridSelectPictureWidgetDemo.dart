@@ -21,7 +21,7 @@ import 'package:oktoast/oktoast.dart';
 import 'package:simple_permissions/simple_permissions.dart';
 
 
-const String name1 = 'GridSelectPictureWidgetDemo';
+const String title = 'GridSelectPictureWidgetDemo';
 
 class GridSelectPictureWidgetDemo extends StatefulWidget {
   GridSelectPictureWidgetDemo({Key key, this.title}) : super(key: key);
@@ -167,7 +167,7 @@ class GridSelectPictureWidgetDemoState extends State<GridSelectPictureWidgetDemo
     double itemRoundArc = ScreenUtil.getInstance().setHeight(5); //图片圆角弧度
     return Scaffold(
         appBar: AppBar(
-          title: Text(name1),
+          title: Text(title),
         ),
         body: new ListView(
           physics: BouncingScrollPhysics(),

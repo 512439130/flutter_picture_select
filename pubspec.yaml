@@ -52,3 +52,7 @@ flutter:
           - images/icon_close.png
           - images/icon_circle.png
           - images/icon_right.png
+          - images/icon_file_left.png
+          - images/icon_word.png
+          - images/icon_ppt.png
+          - images/icon_excel.png
