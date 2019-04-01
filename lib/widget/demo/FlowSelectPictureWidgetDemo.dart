@@ -1,23 +1,17 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:english_words/english_words.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_picture_select/bean/LocalImageBean.dart';
 import 'package:flutter_picture_select/const/Constant.dart';
-import 'package:flutter_picture_select/widget/dialog/BottomPickerHandler.dart';
-import 'package:flutter_picture_select/widget/dialog/ProgressDialog.dart';
 import 'package:flutter_picture_select/util/ListUtil.dart';
 import 'package:flutter_picture_select/util/PermissionUtil.dart';
 import 'package:flutter_picture_select/util/PictureUtil.dart';
 import 'package:flutter_picture_select/util/ToastUtil.dart';
+import 'package:flutter_picture_select/widget/dialog/BottomPickerHandler.dart';
+import 'package:flutter_picture_select/widget/dialog/ProgressDialog.dart';
 import 'package:flutter_picture_select/widget/picture/flow/FlowPictureSelectWidget.dart';
-import 'package:flutter_picture_select/widget/picture/grid/GridPictureSelectWidget.dart';
-
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:oktoast/oktoast.dart';
 import 'package:simple_permissions/simple_permissions.dart';
 
 const String name1 = 'FlowSelectPictureWidgetDemo';
@@ -107,7 +101,7 @@ class FlowSelectPictureWidgetDemoState
       if (image != null) {
         print('replaceSdCard');
         //type
-        localImageBeanList[id].path = image.path;
+        localImageBeanList[id].url = image.path;
         //去重复
         localImageBeanList = ListUtil.deduplication(localImageBeanList);
       } else {
@@ -116,7 +110,7 @@ class FlowSelectPictureWidgetDemoState
     });
   }
 
-  Future<void> asyncAddImage(int id) async {
+  Future<void> asyncAddImage() async {
     try {
       progressDialog.show();
       await Future.delayed(Duration(milliseconds: 500), () {
@@ -160,18 +154,18 @@ class FlowSelectPictureWidgetDemoState
 
   @override
   Widget build(BuildContext context) {
-    double boxPaddingLeft = 5; //盒子左边距
-    double boxPaddingTop = 12; //盒子顶边距
-    double boxPaddingRight = 5; //盒子右边距
-    double boxPaddingBottom = 12; //盒子底边距
+    double boxPaddingLeft = ScreenUtil.getInstance().setHeight(5); //盒子左边距
+    double boxPaddingTop = ScreenUtil.getInstance().setHeight(12); //盒子顶边距
+    double boxPaddingRight = ScreenUtil.getInstance().setHeight(5); //盒子右边距
+    double boxPaddingBottom = ScreenUtil.getInstance().setHeight(12); //盒子底边距
+    double itemHorizontalSpacing = ScreenUtil.getInstance().setHeight(17); //水平间距
+    double itemVerticalSpacing = ScreenUtil.getInstance().setHeight(17); //垂直间距
 
-    double itemWidth = 58; //图片宽度
-    double itemHeight = 58 ; //图片高度
-    double itemHorizontalSpacing = 17; //水平间距
-    double itemVerticalSpacing = 17; //垂直间距
-    double itemRoundArc = 5; //图片圆角弧度
+
+    double itemRoundArc = ScreenUtil.getInstance().setHeight(5); //图片圆角弧度
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(name1),
       ),
@@ -180,16 +174,17 @@ class FlowSelectPictureWidgetDemoState
           child: new ListView(
             physics: BouncingScrollPhysics(),
             children: <Widget>[
+              //每行2个(包括加号)
               new Container(
-//                color: Colors.green,
+                color: Colors.white,
 //                alignment: Alignment.center,
                 padding: EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop,
                     boxPaddingRight, boxPaddingBottom),
                 margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: new FlowPictureSelectWidget(
                     localImageBeanList,
-                    itemWidth,
-                    itemHeight,
+                    ScreenUtil.getInstance().setHeight(451),
+                    ScreenUtil.getInstance().setHeight(451),
                     itemHorizontalSpacing,
                     itemVerticalSpacing,
                     itemRoundArc,
@@ -197,6 +192,7 @@ class FlowSelectPictureWidgetDemoState
                     replaceClick,
                     deleteClick),
               ),
+              //每行3个(包括加号)
               new Container(
 //                alignment: Alignment.center,
                 color: Colors.white,
@@ -205,8 +201,8 @@ class FlowSelectPictureWidgetDemoState
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: new FlowPictureSelectWidget(
                     localImageBeanList,
-                    82,
-                    82,
+                    ScreenUtil.getInstance().setHeight(296),
+                    ScreenUtil.getInstance().setHeight(296),
                     itemHorizontalSpacing,
                     itemVerticalSpacing,
                     itemRoundArc,
@@ -214,6 +210,7 @@ class FlowSelectPictureWidgetDemoState
                     replaceClick,
                     deleteClick),
               ),
+              //每行4个(包括加号)
               new Container(
 //                alignment: Alignment.topLeft,
                 color: Colors.white,
@@ -222,8 +219,27 @@ class FlowSelectPictureWidgetDemoState
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: new FlowPictureSelectWidget(
                     localImageBeanList,
-                    130,
-                    130,
+                    ScreenUtil.getInstance().setHeight(218),
+                    ScreenUtil.getInstance().setHeight(218),
+                    itemHorizontalSpacing,
+                    itemVerticalSpacing,
+                    itemRoundArc,
+                    addClick,
+                    replaceClick,
+                    deleteClick),
+              ),
+
+              //每行5个(包括加号)
+              new Container(
+//                alignment: Alignment.topLeft,
+                color: Colors.white,
+                margin: EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop,
+                    boxPaddingRight, boxPaddingBottom),
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: new FlowPictureSelectWidget(
+                    localImageBeanList,
+                    ScreenUtil.getInstance().setHeight(172),
+                    ScreenUtil.getInstance().setHeight(172),
                     itemHorizontalSpacing,
                     itemVerticalSpacing,
                     itemRoundArc,
@@ -237,12 +253,7 @@ class FlowSelectPictureWidgetDemoState
   }
 
   Function addClick() {
-    int defaultLength = 1;
-    if (localImageBeanList != null && localImageBeanList.length > 0) {
-      asyncAddImage(localImageBeanList.length + 1);
-    } else {
-      asyncAddImage(defaultLength);
-    }
+    asyncAddImage();
     return null;
   }
 
@@ -272,7 +283,7 @@ class FlowSelectPictureWidgetDemoState
         print('addSdCard');
         LocalImageBean localImageBean = new LocalImageBean();
         localImageBean.id = length.toString();
-        localImageBean.path = _image.path;
+        localImageBean.url = _image.path;
         //type
         localImageBeanList.add(localImageBean);
         //去重复

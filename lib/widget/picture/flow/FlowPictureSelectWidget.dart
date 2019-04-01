@@ -94,7 +94,7 @@ class _FlowPictureSelectWidgetState extends State<FlowPictureSelectWidget>
         print('addSdCard');
         LocalImageBean localImageBean = new LocalImageBean();
         localImageBean.id = length.toString();
-        localImageBean.path = _image.path;
+        localImageBean.url = _image.path;
         //type
         widget.localImageBeanList.add(localImageBean);
         //去重复
@@ -114,9 +114,9 @@ class _FlowPictureSelectWidgetState extends State<FlowPictureSelectWidget>
     if (widget.localImageBeanList != null &&
         widget.localImageBeanList.length > 0) {
       for (int i = 0; i < widget.localImageBeanList.length; i++) {
-        listWidget.add(sdCardImage(i, widget.localImageBeanList[i].path));
-        imageUrls.add(widget.localImageBeanList[i].path);
-        print("test:" + widget.localImageBeanList[i].path);
+        listWidget.add(sdCardImage(i, widget.localImageBeanList[i].url));
+        imageUrls.add(widget.localImageBeanList[i].url);
+        print("test:" + widget.localImageBeanList[i].url);
       }
       //每次在尾部加添加图片
       listWidget.add(localImage());
@@ -248,7 +248,7 @@ class _FlowPictureSelectWidgetState extends State<FlowPictureSelectWidget>
         //调用delete
       },
       child: Image.asset(
-        'images/icon_close.png',
+        'images/icon_delete.png',
         width: imageWidth,
         height: imageWidth,
         fit: BoxFit.cover,
@@ -292,7 +292,7 @@ class _FlowPictureSelectWidgetState extends State<FlowPictureSelectWidget>
          new Container(
 //              color: Colors.deepOrange,
               alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
               margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: new Wrap(
                 spacing: widget.itemHorizontalSpacing, // 主轴(水平)方向间距

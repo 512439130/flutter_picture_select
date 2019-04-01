@@ -40,10 +40,10 @@ class _FlowPictureDisplayWidgetState extends State<FlowPictureDisplayWidget> {
     print('setList');
     listWidget = new List<Widget>();
     imageUrls = new List<String>();
-    for (int i = 0; i < widget.testBean.datas.length; i++) {
-      if (i < widget.testBean.datas.length - 1) {
-        listWidget.add(networkImage(i, widget.testBean.datas[i].url));
-        imageUrls.add(widget.testBean.datas[i].url);
+    for (int i = 0; i < widget.testBean.localImageBean.length; i++) {
+      if (i < widget.testBean.localImageBean.length - 1) {
+        listWidget.add(networkImage(i, widget.testBean.localImageBean[i].url));
+        imageUrls.add(widget.testBean.localImageBean[i].url);
       }
     }
   }

@@ -1,19 +1,9 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:english_words/english_words.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_picture_select/bean/ImageBean.dart';
 import 'package:flutter_picture_select/widget/picture/flow/FlowPictureDisplayWidget.dart';
-import 'package:flutter_picture_select/widget/picture/grid/GridPictureDisplayWidget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:oktoast/oktoast.dart';
-import 'package:simple_permissions/simple_permissions.dart';
 
 const String name1 = 'FlowPictureDisplayWidgetDemo';
 
@@ -60,6 +50,7 @@ class FlowPictureDisplayWidgetDemoState
 
     double fontSize = ScreenUtil.getInstance().setSp(42);
     return Scaffold(
+       backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text(name1),
         ),
@@ -95,6 +86,7 @@ class FlowPictureDisplayWidgetDemoState
                           child: new Text(
                             "图         片",
                             style: new TextStyle(
+                              color: const Color(0xFF999999),
                               fontSize: fontSize,
                             ),
                           ),
@@ -143,6 +135,7 @@ class FlowPictureDisplayWidgetDemoState
                           child: new Text(
                             "图         片",
                             style: new TextStyle(
+                              color: const Color(0xFF999999),
                               fontSize: fontSize,
                             ),
                           ),
@@ -191,6 +184,7 @@ class FlowPictureDisplayWidgetDemoState
                           child: new Text(
                             "图         片",
                             style: new TextStyle(
+                              color: const Color(0xFF999999),
                               fontSize: fontSize,
                             ),
                           ),
@@ -239,6 +233,7 @@ class FlowPictureDisplayWidgetDemoState
                           child: new Text(
                             "图         片",
                             style: new TextStyle(
+                              color: const Color(0xFF999999),
                               fontSize: fontSize,
                             ),
                           ),

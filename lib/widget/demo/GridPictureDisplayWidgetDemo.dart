@@ -1,18 +1,9 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:english_words/english_words.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_picture_select/bean/ImageBean.dart';
 import 'package:flutter_picture_select/widget/picture/grid/GridPictureDisplayWidget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:oktoast/oktoast.dart';
-import 'package:simple_permissions/simple_permissions.dart';
 
 
 const String name1 = 'GridPictureDisplayWidgetDemo';
@@ -53,16 +44,17 @@ class GridPictureDisplayWidgetDemoState extends State<GridPictureDisplayWidgetDe
 
   @override
   Widget build(BuildContext context) {
-    double boxPaddingLeft = 10;//盒子左边距
-    double boxPaddingTop = 14;//盒子顶边距
-    double boxPaddingRight = 10;//盒子右边距
-    double boxPaddingBottom = 14;//盒子底边距
-    double itemHorizontalSpacing = 12; //水平间距
-    double itemVerticalSpacing = 12;  //垂直间距
-    double itemRoundArc = 5; //图片圆角弧度
+    double boxPaddingLeft = ScreenUtil.getInstance().setHeight(10); //盒子左边距
+    double boxPaddingTop = ScreenUtil.getInstance().setHeight(14); //盒子顶边距
+    double boxPaddingRight = ScreenUtil.getInstance().setHeight(10); //盒子右边距
+    double boxPaddingBottom = ScreenUtil.getInstance().setHeight(14); //盒子底边距
+    double itemHorizontalSpacing = ScreenUtil.getInstance().setHeight(12); //水平间距
+    double itemVerticalSpacing = ScreenUtil.getInstance().setHeight(12); //垂直间距
+    double itemRoundArc = ScreenUtil.getInstance().setHeight(5); //图片圆角弧度
     double parentWidth = ScreenUtil.getInstance().setWidth(1440);
     print("parentWidth:" + parentWidth.toString());
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text(name1),
         ),
@@ -98,6 +90,7 @@ class GridPictureDisplayWidgetDemoState extends State<GridPictureDisplayWidgetDe
                           child: new Text(
                             "图         片",
                             style: new TextStyle(
+                              color: const Color(0xFF999999),
                               fontSize: 16,
                             ),
                           ),
@@ -145,6 +138,7 @@ class GridPictureDisplayWidgetDemoState extends State<GridPictureDisplayWidgetDe
                           child: new Text(
                             "图         片",
                             style: new TextStyle(
+                              color: const Color(0xFF999999),
                               fontSize: 16,
                             ),
                           ),
@@ -191,6 +185,7 @@ class GridPictureDisplayWidgetDemoState extends State<GridPictureDisplayWidgetDe
                           child: new Text(
                             "图         片",
                             style: new TextStyle(
+                              color: const Color(0xFF999999),
                               fontSize: 16,
                             ),
                           ),
@@ -237,6 +232,7 @@ class GridPictureDisplayWidgetDemoState extends State<GridPictureDisplayWidgetDe
                           child: new Text(
                             "图         片",
                             style: new TextStyle(
+                              color: const Color(0xFF999999),
                               fontSize: 16,
                             ),
                           ),
@@ -283,6 +279,7 @@ class GridPictureDisplayWidgetDemoState extends State<GridPictureDisplayWidgetDe
                           child: new Text(
                             "图         片",
                             style: new TextStyle(
+                              color: const Color(0xFF999999),
                               fontSize: 16,
                             ),
                           ),

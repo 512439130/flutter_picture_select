@@ -77,37 +77,44 @@ class BottomPicker extends StatelessWidget {
             child: new GestureDetector(
               onTap: () => dismissDialog(),
               child: new Container(
-                padding: EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 20.0),
+                padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 10.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     new GestureDetector(
                       onTap: () => _listener.openCamera(),
-                      child: roundedButton(
+                      child: roundedTopButton(
                           "相机",
-                          EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-                          const Color(0xFFA9A9A9),
-                          const Color(0xFFFFFFFF)),
+                          EdgeInsets.fromLTRB(0.0,  0.0, 0.0, 0.0),
+                          const Color(0xFFFFFFFF),
+                          const Color(0xFF3068E8)),
+                    ),
+                    new Container(
+                      width: 1,
+                      color: const Color(0xFFF5F5F5),
                     ),
                     new GestureDetector(
                       onTap: () => _listener.openGallery(),
-                      child: roundedButton(
-                          "相册",
-                          EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-                          const Color(0xFFA9A9A9),
-                          const Color(0xFFFFFFFF)),
+                      child: roundedNoRadiusButton(
+                          "从本地相册获取",
+                          EdgeInsets.fromLTRB(0.0,  0.0, 0.0, 0.0),
+                          const Color(0xFFFFFFFF),
+                          const Color(0xFF3068E8)),
                     ),
-                    const SizedBox(height: 5.0),
+                    new Container(
+                      width: 5,
+                      color: const Color(0xFFF5F5F5),
+                    ),
                     new GestureDetector(
                       onTap: () => dismissDialog(),
                       child: new Padding(
-                        padding: EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
-                        child: roundedButton(
+                        padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 0.0),
+                        child: roundedBottomButton(
                             "取消",
-                            EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-                            const Color(0xFFA9A9A9),
-                            const Color(0xFFFFFFFF)),
+                            EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+                            const Color(0xFFFFFFFF),
+                            const Color(0xFF1A1A1A)),
                       ),
                     ),
                   ],
@@ -118,7 +125,7 @@ class BottomPicker extends StatelessWidget {
     );
   }
 
-  Widget roundedButton(
+  Widget roundedTopButton(
       String buttonLabel, EdgeInsets margin, Color bgColor, Color textColor) {
     var loginBtn = new Container(
       margin: margin,
@@ -126,10 +133,10 @@ class BottomPicker extends StatelessWidget {
       alignment: FractionalOffset.center,
       decoration: new BoxDecoration(
         color: bgColor,
-        borderRadius: new BorderRadius.all(const Radius.circular(100.0)),
+        borderRadius: new BorderRadius.only(topLeft:const Radius.circular(10.0),topRight:const Radius.circular(10.0)),
         boxShadow: <BoxShadow>[
           BoxShadow(
-            color: const Color(0xFF696969),
+            color: const Color(0xFFF5F5F5),
             offset: Offset(1.0, 5.0), //阴影
             blurRadius: 0.001, //延伸距离,会有模糊效果
           ),
@@ -138,7 +145,58 @@ class BottomPicker extends StatelessWidget {
       child: Text(
         buttonLabel,
         style: new TextStyle(
-            color: textColor, fontSize: 20.0, fontWeight: FontWeight.bold),
+            color: textColor, fontSize: 20.0, fontWeight: FontWeight.w100),
+      ),
+    );
+    return loginBtn;
+  }
+  Widget roundedBottomButton(
+      String buttonLabel, EdgeInsets margin, Color bgColor, Color textColor) {
+    var loginBtn = new Container(
+      margin: margin,
+      padding: EdgeInsets.all(10.0),
+      alignment: FractionalOffset.center,
+      decoration: new BoxDecoration(
+        color: bgColor,
+        borderRadius: new BorderRadius.only(bottomLeft:const Radius.circular(10.0),bottomRight:const Radius.circular(10.0)),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: const Color(0xFFF5F5F5),
+            offset: Offset(1.0, 5.0), //阴影
+            blurRadius: 0.001, //延伸距离,会有模糊效果
+          ),
+        ],
+      ),
+      child: Text(
+        buttonLabel,
+        style: new TextStyle(
+            color: textColor, fontSize: 20.0, fontWeight: FontWeight.w100),
+      ),
+    );
+    return loginBtn;
+  }
+
+  Widget roundedNoRadiusButton(
+      String buttonLabel, EdgeInsets margin, Color bgColor, Color textColor) {
+    var loginBtn = new Container(
+      margin: margin,
+      padding: EdgeInsets.all(10.0),
+      alignment: FractionalOffset.center,
+      decoration: new BoxDecoration(
+        color: bgColor,
+        borderRadius: new BorderRadius.all(const Radius.circular(0.0)),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: const Color(0xFFF5F5F5),
+            offset: Offset(1.0, 5.0), //阴影
+            blurRadius: 0.001, //延伸距离,会有模糊效果
+          ),
+        ],
+      ),
+      child: Text(
+        buttonLabel,
+        style: new TextStyle(
+            color: textColor, fontSize: 20.0, fontWeight: FontWeight.w100),
       ),
     );
     return loginBtn;

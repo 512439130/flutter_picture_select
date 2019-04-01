@@ -1,23 +1,17 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:english_words/english_words.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_picture_select/bean/LocalImageBean.dart';
 import 'package:flutter_picture_select/const/Constant.dart';
-import 'package:flutter_picture_select/widget/dialog/BottomPickerHandler.dart';
-import 'package:flutter_picture_select/widget/dialog/ProgressDialog.dart';
 import 'package:flutter_picture_select/util/ListUtil.dart';
 import 'package:flutter_picture_select/util/PermissionUtil.dart';
 import 'package:flutter_picture_select/util/PictureUtil.dart';
 import 'package:flutter_picture_select/util/ToastUtil.dart';
+import 'package:flutter_picture_select/widget/dialog/BottomPickerHandler.dart';
+import 'package:flutter_picture_select/widget/dialog/ProgressDialog.dart';
 import 'package:flutter_picture_select/widget/picture/grid/GridPictureSelectWidget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:oktoast/oktoast.dart';
 import 'package:simple_permissions/simple_permissions.dart';
 
 
@@ -109,7 +103,7 @@ class GridSelectPictureWidgetDemoState extends State<GridSelectPictureWidgetDemo
       if (image != null) {
         print('replaceSdCard');
         //type
-        localImageBeanList[id].path = image.path;
+        localImageBeanList[id].url = image.path;
         //去重复
         localImageBeanList = ListUtil.deduplication(localImageBeanList);
       } else {
@@ -118,7 +112,7 @@ class GridSelectPictureWidgetDemoState extends State<GridSelectPictureWidgetDemo
     });
   }
 
-  Future<void> asyncAddImage(int id) async {
+  Future<void> asyncAddImage() async {
     try {
       progressDialog.show();
       await Future.delayed(Duration(milliseconds: 500), () {
@@ -166,6 +160,7 @@ class GridSelectPictureWidgetDemoState extends State<GridSelectPictureWidgetDemo
     double parentWidth = ScreenUtil.getInstance().setWidth(1440);
     double itemRoundArc = ScreenUtil.getInstance().setHeight(5); //图片圆角弧度
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text(title),
         ),
@@ -184,12 +179,7 @@ class GridSelectPictureWidgetDemoState extends State<GridSelectPictureWidgetDemo
   }
 
   Function addClick() {
-    int defaultLength = 1;
-    if (localImageBeanList != null && localImageBeanList.length > 0) {
-      asyncAddImage(localImageBeanList.length + 1);
-    } else {
-      asyncAddImage(defaultLength);
-    }
+    asyncAddImage();
     return null;
   }
 
@@ -218,7 +208,7 @@ class GridSelectPictureWidgetDemoState extends State<GridSelectPictureWidgetDemo
         print('addSdCard');
         LocalImageBean localImageBean = new LocalImageBean();
         localImageBean.id = length.toString();
-        localImageBean.path = _image.path;
+        localImageBean.url = _image.path;
         //type
         localImageBeanList.add(localImageBean);
         //去重复

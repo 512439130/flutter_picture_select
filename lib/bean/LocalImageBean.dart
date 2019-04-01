@@ -1,24 +1,24 @@
 class LocalImageBean {
   String id;
-  String path;
+  String url;
 
-  LocalImageBean({this.id, this.path});
+  LocalImageBean({this.id, this.url});
 
   LocalImageBean.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    path = json['path'];
+    url = json['path'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['path'] = this.path;
+    data['path'] = this.url;
     return data;
   }
 
   @override
   String toString() {
-    return 'LocalImageBean{id: $id, path: $path}\n';
+    return 'LocalImageBean{id: $id, path: $url}\n';
   }
 
 }

@@ -1,14 +1,16 @@
+import 'package:flutter_picture_select/bean/LocalFileBean.dart';
+
 class FileBean {
-  List<Datas> datas;
+  List<LocalFileBean> datas;
   ResMsg resMsg;
 
   FileBean({this.datas, this.resMsg});
 
   FileBean.fromJson(Map<String, dynamic> json) {
     if (json['datas'] != null) {
-      datas = new List<Datas>();
+      datas = new List<LocalFileBean>();
       json['datas'].forEach((v) {
-        datas.add(new Datas.fromJson(v));
+        datas.add(new LocalFileBean.fromJson(v));
       });
     }
     resMsg =
@@ -23,28 +25,6 @@ class FileBean {
     if (this.resMsg != null) {
       data['resMsg'] = this.resMsg.toJson();
     }
-    return data;
-  }
-}
-
-class Datas {
-  String id;
-  String fileName;
-  String fileUrl;
-
-  Datas({this.id, this.fileName, this.fileUrl});
-
-  Datas.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    fileName = json['fileName'];
-    fileUrl = json['fileUrl'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['fileName'] = this.fileName;
-    data['fileUrl'] = this.fileUrl;
     return data;
   }
 }

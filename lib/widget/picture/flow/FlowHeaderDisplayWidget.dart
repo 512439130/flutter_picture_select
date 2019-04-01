@@ -167,7 +167,7 @@ class _FlowHeaderDisplayWidgetState extends State<FlowHeaderDisplayWidget> {
           new Container(
 //              color: Colors.deepOrange,
             alignment: Alignment.centerLeft,
-            padding: EdgeInsets.fromLTRB(ScreenUtil.getInstance().setHeight(5), 0, 0, 0),
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
             margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: new Wrap(
               spacing: widget.itemHorizontalSpacing, // 主轴(水平)方向间距

@@ -52,18 +52,9 @@ class GridHeaderDisplayWidgetDemoState extends State<GridHeaderDisplayWidgetDemo
   @override
   Widget build(BuildContext context) {
     double parentWidth = ScreenUtil.getInstance().setWidth(1440);
-    print('设备宽度:${ScreenUtil.screenWidth}'); //Device width
-    print('设备高度:${ScreenUtil.screenHeight}'); //Device height
-    print('设备的像素密度:${ScreenUtil.pixelRatio}'); //Device pixel density
-    print('底部安全区距离:${ScreenUtil.bottomBarHeight}'); //Bottom safe zone distance，suitable for buttons with full screen
-    print('状态栏高度:${ScreenUtil.statusBarHeight}px'); //Status bar height , Notch will be higher Unit px
-    print('实际宽度的dp与设计稿px的比例:${ScreenUtil.getInstance().scaleWidth}');
-    print('实际高度的dp与设计稿px的比例:${ScreenUtil.getInstance().scaleHeight}');
-    print('宽度和字体相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleWidth * ScreenUtil.pixelRatio}');
-    print('高度相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleHeight * ScreenUtil.pixelRatio}');
-    print('系统的字体缩放比例:${ScreenUtil.textScaleFactory}');
+
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text(name1),
         ),

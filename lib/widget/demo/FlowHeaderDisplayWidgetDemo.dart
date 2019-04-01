@@ -59,7 +59,7 @@ class FlowHeaderDisplayWidgetDemoState extends State<FlowHeaderDisplayWidgetDemo
     double itemHorizontalSpacing = ScreenUtil.getInstance().setHeight(5); //水平间距
     double itemVerticalSpacing = ScreenUtil.getInstance().setHeight(5); //垂直间距
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text(name1),
         ),
