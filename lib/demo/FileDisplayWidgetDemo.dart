@@ -2,16 +2,15 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_picture_select/bean/FileBean.dart';
-import 'package:flutter_picture_select/bean/LocalFileBean.dart';
-import 'package:flutter_picture_select/const/Constant.dart';
-import 'package:flutter_picture_select/util/PermissionUtil.dart';
-import 'package:flutter_picture_select/util/ToastUtil.dart';
-import 'package:flutter_picture_select/widget/dialog/ProgressDialog.dart';
-import 'package:flutter_picture_select/widget/file/FileDisplayWidget.dart';
-import 'package:flutter_picture_select/util/FilePicker.dart';
+import 'package:flutter_picture_select/demo/bean/FileBean.dart';
+import 'package:flutter_picture_select/demo/bean/LocalFileBean.dart';
+import 'package:flutter_picture_select/demo/const/Constant.dart';
+import 'package:flutter_picture_select/demo/util/FilePicker.dart';
+import 'package:flutter_picture_select/demo/util/PermissionUtil.dart';
+import 'package:flutter_picture_select/demo/util/ToastUtil.dart';
+import 'package:flutter_picture_select/demo/dialog/ProgressDialog.dart';
+import 'package:flutter_picture_select/demo/widget/FileDisplayWidget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:simple_permissions/simple_permissions.dart';
 
 const String title = 'FileDisplayWidgetDemo';

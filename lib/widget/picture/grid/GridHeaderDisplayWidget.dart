@@ -42,42 +42,25 @@ class _GridHeaderDisplayWidgetState extends State<GridHeaderDisplayWidget> {
     imageUrls = new List<String>();
     names = new List<String>();
     for (int i = 0; i < widget.headerBean.datas.length; i++) {
-      listWidget.add(networkImage(
+      listWidget.add(headerNetworkImage(
           i, widget.headerBean.datas[i].url, widget.headerBean.datas[i].name));
       if (i != widget.headerBean.datas.length - 1) {
-        listWidget.add(localImage());
+        listWidget.add(headerLocalImage());
       }
-//        if(widget.intervalType == Constant.header_type_add){  //add类型
-//          //末尾有分隔符
-//          if (i != widget.headerBean.datas.length - 1) {
-//            listWidget.add(localImage());
-//          }
-//        }else if(widget.intervalType == Constant.header_type_right){
-//          if (i != widget.headerBean.datas.length - 1) {
-//            //末尾无分隔符
-//            if(i== 0){
-//              listWidget.add(localImage());
-//            }else{
-//              if((i+1)%widget.count!=0){
-//                listWidget.add(localImage());
-//              }
-//            }
-//          }
-//        }
-
       imageUrls.add(widget.headerBean.datas[i].url);
       names.add(widget.headerBean.datas[i].name);
     }
   }
 
-  Widget networkImage(int id, String url, String name) {
+
+  Widget headerNetworkImage(int id, String url, String name) {
     return new Container(
         alignment: Alignment.center,
 //            color: Colors.greenAccent,
-        child: getNetImage(id, true, url, name));
+        child: getHeaderNetworkImage(id, true, url, name));
   }
 
-  Widget getNetImage(int id, bool isVisible, String url, String name) {
+  Widget getHeaderNetworkImage(int id, bool isVisible, String url, String name) {
     double imageWidthOrHeight;
     double count = widget.count;
     double maxWidth = widget.maxWidth;
@@ -143,7 +126,7 @@ class _GridHeaderDisplayWidgetState extends State<GridHeaderDisplayWidget> {
   }
 
 //本地图片
-  Widget localImage() {
+  Widget headerLocalImage() {
     bool isVisible = true;
     double widthOrHeight;
     double padding;
@@ -157,10 +140,10 @@ class _GridHeaderDisplayWidgetState extends State<GridHeaderDisplayWidget> {
 
     double intervalWidth = widthOrHeight /3;
     double intervalHeight = widthOrHeight /3;
-    if(widget.intervalType == Constant.header_type_add){
+    if(widget.intervalType == Constant.grid_general_header_add){
       intervalWidth = widthOrHeight /2;
       intervalHeight = widthOrHeight /2;
-    }else if(widget.intervalType == Constant.header_type_right){
+    }else if(widget.intervalType == Constant.grid_general_header_right){
       intervalWidth = widthOrHeight/3.5;
       intervalHeight = widthOrHeight/2;
     }
@@ -173,7 +156,7 @@ class _GridHeaderDisplayWidgetState extends State<GridHeaderDisplayWidget> {
     print("imageWidth:" + intervalWidth.toString());
     print("imageHeight:" + intervalHeight.toString());
     return new Offstage(
-        //使用Offstage 控制widget在tree中的显示和隐藏
+      //使用Offstage 控制widget在tree中的显示和隐藏
         offstage: isVisible ? false : true,
         child: new Stack(
           alignment: Alignment.center, //指定未定位或部分定位widget的对齐方式
@@ -197,6 +180,7 @@ class _GridHeaderDisplayWidgetState extends State<GridHeaderDisplayWidget> {
         ));
   }
 
+
   @override
   Widget build(BuildContext context) {
     setList();
@@ -211,9 +195,8 @@ class _GridHeaderDisplayWidgetState extends State<GridHeaderDisplayWidget> {
             child: new Center(
                 child: new GridView.count(
                   //如果是right类型则取2倍的count，否则-1
-              crossAxisCount: widget.intervalType == Constant.header_type_right ?widget.count.toInt() * 2: widget.count.toInt() * 2-1,
-              mainAxisSpacing: 10,
-              //上下间距
+              crossAxisCount: widget.intervalType == Constant.grid_general_header_right ?widget.count.toInt() * 2: widget.count.toInt() * 2-1,
+              mainAxisSpacing: 10, //上下间距
               crossAxisSpacing: 0,
               //左右间距
               childAspectRatio: 2 / 3,

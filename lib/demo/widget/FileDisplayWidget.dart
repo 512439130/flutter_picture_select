@@ -1,17 +1,8 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_picture_select/bean/FileBean.dart';
-import 'package:flutter_picture_select/bean/HeaderBean.dart';
-import 'package:flutter_picture_select/bean/LocalFileBean.dart';
-import 'package:flutter_picture_select/const/Constant.dart';
-import 'package:flutter_picture_select/util/PictureUtil.dart';
-import 'package:flutter_picture_select/util/ToastUtil.dart';
+import 'package:flutter_picture_select/demo/bean/FileBean.dart';
+import 'package:flutter_picture_select/demo/bean/LocalFileBean.dart';
+import 'package:flutter_picture_select/demo/const/Constant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:oktoast/oktoast.dart';
-
-import 'package:cached_network_image/cached_network_image.dart';
 
 //文件展示功能
 class FileDisplayWidget extends StatefulWidget {

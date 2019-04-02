@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_picture_select/widget/dialog/BottomPickerHandler.dart';
+import 'package:flutter_picture_select/demo/dialog/BottomPickerHandler.dart';
+
 
 class BottomPicker extends StatelessWidget {
   BottomPickerHandler _listener;

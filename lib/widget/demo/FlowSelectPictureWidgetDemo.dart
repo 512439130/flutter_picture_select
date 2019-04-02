@@ -183,8 +183,8 @@ class FlowSelectPictureWidgetDemoState
                 margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: new FlowPictureSelectWidget(
                     localImageBeanList,
-                    ScreenUtil.getInstance().setHeight(451),
-                    ScreenUtil.getInstance().setHeight(451),
+                    ScreenUtil.getInstance().setHeight(420),
+                    ScreenUtil.getInstance().setHeight(420),
                     itemHorizontalSpacing,
                     itemVerticalSpacing,
                     itemRoundArc,
@@ -201,8 +201,8 @@ class FlowSelectPictureWidgetDemoState
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: new FlowPictureSelectWidget(
                     localImageBeanList,
-                    ScreenUtil.getInstance().setHeight(296),
-                    ScreenUtil.getInstance().setHeight(296),
+                    ScreenUtil.getInstance().setHeight(270),
+                    ScreenUtil.getInstance().setHeight(270),
                     itemHorizontalSpacing,
                     itemVerticalSpacing,
                     itemRoundArc,
@@ -219,8 +219,8 @@ class FlowSelectPictureWidgetDemoState
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: new FlowPictureSelectWidget(
                     localImageBeanList,
-                    ScreenUtil.getInstance().setHeight(218),
-                    ScreenUtil.getInstance().setHeight(218),
+                    ScreenUtil.getInstance().setHeight(200),
+                    ScreenUtil.getInstance().setHeight(200),
                     itemHorizontalSpacing,
                     itemVerticalSpacing,
                     itemRoundArc,
@@ -238,8 +238,8 @@ class FlowSelectPictureWidgetDemoState
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: new FlowPictureSelectWidget(
                     localImageBeanList,
-                    ScreenUtil.getInstance().setHeight(172),
-                    ScreenUtil.getInstance().setHeight(172),
+                    ScreenUtil.getInstance().setHeight(160),
+                    ScreenUtil.getInstance().setHeight(170),
                     itemHorizontalSpacing,
                     itemVerticalSpacing,
                     itemRoundArc,

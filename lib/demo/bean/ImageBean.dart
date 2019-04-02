@@ -1,4 +1,4 @@
-import 'package:flutter_picture_select/bean/LocalImageBean.dart';
+import 'package:flutter_picture_select/demo/bean/LocalImageBean.dart';
 
 class ImageBean {
   List<LocalImageBean> localImageBeanList;

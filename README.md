@@ -427,7 +427,12 @@ Function replaceClick( int id,List<String> imageUrls) {
 Function deleteClick(int id) {
       return null;
 }
+
 ```
+
+## 1.* GridGeneralWidget编写，整合全部功能Widget，可异步查看独立项目[merge_project](https://github.com/512439130/merge_project.git/)
+
+
 ### 2.FlowPictureDisplayWidget（图片渐现，加载进度条占位符，支持图片下载保存到本地，大图展示（支持多图展示））
 
 ```
@@ -964,10 +969,10 @@ Future<void> obtainPermission() async {
 * 1.下拉刷新，上拉加载 complete
 * 2.权限申请 complete complete
 * 3.图片Widget封装 complete
-* 4.网络请求封装（dio）ing
+* 4.网络请求封装（dio）complete
 * 5.文件存取  complete
-* 6.页面跳转并传参（路由）styudy
-* 7.native跳转并传参（native《=》flutter） styudy
+* 6.页面跳转并传参（路由）ing
+* 7.native跳转并传参（native《=》flutter） ing
 * 8.适配（字体大小，宽高），自定义字体，国际化 styudy（屏幕适配：complete）
 * 9.插件封装(widget,util)  ing
 
@@ -976,8 +981,9 @@ Future<void> obtainPermission() async {
 * 1.Flow（流式布局）的图片构造器 bug修复
 * 2.header类型分离为两种情况
 * 3.增加屏幕适配方案，适配Picture全部功能
-
-
+* 4.文件选择器功能实现。
+* 5.GridGeneralWidget封装(包含所有需求功能)。
+* 6.快速demo文件编写。
 
 
 

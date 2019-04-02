@@ -30,8 +30,6 @@ dependencies:
   image_cropper: ^1.0.0 #裁剪
   dio: ^2.1.0    #网络请求库
   flutter_screenutil: ^0.4.2  #屏幕适配库
-
-dev_dependencies:
   flutter_test:
     sdk: flutter
 

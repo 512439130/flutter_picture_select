@@ -1,16 +1,14 @@
-import 'package:flutter_picture_select/bean/LocalImageBean.dart';
-
-class ImageBean {
-  List<LocalImageBean> localImageBeanList;
+class HeaderBean {
+  List<Datas> datas;
   ResMsg resMsg;
 
-  ImageBean({this.localImageBeanList, this.resMsg});
+  HeaderBean({this.datas, this.resMsg});
 
-  ImageBean.fromJson(Map<String, dynamic> json) {
+  HeaderBean.fromJson(Map<String, dynamic> json) {
     if (json['datas'] != null) {
-      localImageBeanList = new List<LocalImageBean>();
+      datas = new List<Datas>();
       json['datas'].forEach((v) {
-        localImageBeanList.add(new LocalImageBean.fromJson(v));
+        datas.add(new Datas.fromJson(v));
       });
     }
     resMsg =
@@ -19,20 +17,36 @@ class ImageBean {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.localImageBeanList != null) {
-      data['datas'] = this.localImageBeanList.map((v) => v.toJson()).toList();
+    if (this.datas != null) {
+      data['datas'] = this.datas.map((v) => v.toJson()).toList();
     }
     if (this.resMsg != null) {
       data['resMsg'] = this.resMsg.toJson();
     }
     return data;
   }
+}
 
-  @override
-  String toString() {
-    return 'ImageBean{localImageBeanList: $localImageBeanList}';
+class Datas {
+  String id;
+  String url;
+  String name;
+
+  Datas({this.id, this.url, this.name});
+
+  Datas.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    url = json['url'];
+    name = json['name'];
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['url'] = this.url;
+    data['name'] = this.name;
+    return data;
+  }
 }
 
 class ResMsg {
@@ -55,13 +69,4 @@ class ResMsg {
     data['code'] = this.code;
     return data;
   }
-
-  @override
-  String toString() {
-    return 'ResMsg{message: $message, method: $method, code: $code}';
-  }
-
 }
-
-
-

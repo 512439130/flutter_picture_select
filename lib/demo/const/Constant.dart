@@ -7,17 +7,9 @@ class Constant{
   static const String header_type_add = 'add';
   static const String header_type_right = 'right';
 
-
-
-
-
-
   //header_type
   static const String file_type_display = 'display';
   static const String file_type_edit = 'edit';
-
-
-
 
 
 

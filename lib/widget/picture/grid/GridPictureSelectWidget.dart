@@ -1,18 +1,17 @@
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_picture_select/bean/LocalImageBean.dart';
-import 'package:flutter_picture_select/widget/dialog/BottomPickerHandler.dart';
-import 'package:flutter_picture_select/widget/dialog/ProgressDialog.dart';
-import 'package:flutter_picture_select/util/ListUtil.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:oktoast/oktoast.dart';
-
-import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:english_words/english_words.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_picture_select/bean/LocalImageBean.dart';
+import 'package:flutter_picture_select/util/ListUtil.dart';
+import 'package:flutter_picture_select/widget/dialog/BottomPickerHandler.dart';
+import 'package:flutter_picture_select/widget/dialog/ProgressDialog.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:oktoast/oktoast.dart';
 
 
 
@@ -21,12 +20,12 @@ class GridPictureSelectWidget extends StatefulWidget {
   List<LocalImageBean> localImageBeanList;
   double count;  //每行个数
   double maxWidth;//最大宽度
-  double roundArc;//圆角弧度
+  double itemRoundArc;//圆角弧度
   Function() onAddPress;  //加号按钮回调
   Function(int id, List<String> urls) onReplacePress;  //替换回调
   Function(int) onDeletePress;  //删除按钮回调
 
-  GridPictureSelectWidget(this.localImageBeanList, this.count,this.maxWidth,this.roundArc, this.onAddPress, this.onReplacePress, this.onDeletePress);
+  GridPictureSelectWidget(this.localImageBeanList, this.count,this.maxWidth,this.itemRoundArc, this.onAddPress, this.onReplacePress, this.onDeletePress);
   @override
   _GridPictureSelectWidgetState createState() => _GridPictureSelectWidgetState();
 }
@@ -36,7 +35,7 @@ class _GridPictureSelectWidgetState extends State<GridPictureSelectWidget> with 
   List<Widget> listWidget;
   List<String> imageUrls;
 
-  ProgressDialog progressDialog;
+
 
   AnimationController _controller;
   BottomPickerHandler bottomPicker;
@@ -48,21 +47,13 @@ class _GridPictureSelectWidgetState extends State<GridPictureSelectWidget> with 
     super.initState();
     print("initState");
     init();
-    initProgress();
-    initBottomPicker();
   }
 
   //获取屏幕宽高
   void init() {
-//   Size mScreenSize = MediaQuery.of(widget.mContext).size;
+    initBottomPicker();
   }
 
-  void initProgress() {
-    progressDialog = new ProgressDialog(context);
-    progressDialog.setMessage("Loading...");
-    progressDialog.setTextColor(Colors.black);
-    progressDialog.setTextSize(16);
-  }
 
   void initBottomPicker() {
     _controller = new AnimationController(
@@ -107,19 +98,25 @@ class _GridPictureSelectWidgetState extends State<GridPictureSelectWidget> with 
     if (widget.localImageBeanList != null &&
         widget.localImageBeanList.length > 0) {
       for (int i = 0; i < widget.localImageBeanList.length; i++) {
-        listWidget.add(sdCardImage(i, widget.localImageBeanList[i].url));
+        listWidget.add(selectSdCardImage(i, widget.localImageBeanList[i].url));
         imageUrls.add(widget.localImageBeanList[i].url);
         print("test:" + widget.localImageBeanList[i].url);
       }
       //每次在尾部加添加图片
-      listWidget.add(localImage());
+      listWidget.add(addLocalImage());
     } else {
-      listWidget.add(localImage());
+      listWidget.add(addLocalImage());
     }
   }
 
+
+
+
+
+
+
   //sdcard图片，携带删除控制按钮
-  Widget sdCardImage(int id, String path) {
+  Widget selectSdCardImage(int id, String path) {
     double margin =ScreenUtil.getInstance().setHeight(30) - (widget.count*0.4).toDouble();
     print("test-margin:"+margin.toString());
     return new Stack(
@@ -132,7 +129,7 @@ class _GridPictureSelectWidgetState extends State<GridPictureSelectWidget> with 
 //            padding: const EdgeInsets.all(10),
             padding: EdgeInsets.all(margin),
 
-            child: getSdCardImage(id, false, path)),
+            child: getSelectSdCardImage(id, false, path)),
         Positioned(
           //删除按钮距离右，顶的距离
           right: 0,
@@ -146,16 +143,11 @@ class _GridPictureSelectWidgetState extends State<GridPictureSelectWidget> with 
 
   }
 
-  Widget getSdCardImage(int id, bool offstage, String path) {
-
+  Widget getSelectSdCardImage(int id, bool offstage, String path) {
     double imageWidthOrHeight;
     double count = widget.count;
     double maxWidth = widget.maxWidth;
     imageWidthOrHeight = (widget.maxWidth/widget.count) - ((widget.count) * (4/widget.count * 2)) - 4 * 1.5;
-
-
-
-
     print("count:"+count.toString());
     print("mScreenWidth:"+maxWidth.toString());
     print("imageWidthOrHeight:"+imageWidthOrHeight.toString());
@@ -182,18 +174,18 @@ class _GridPictureSelectWidgetState extends State<GridPictureSelectWidget> with 
           ),
           //圆角
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(widget.roundArc),
-            topRight: Radius.circular(widget.roundArc),
-            bottomLeft: Radius.circular(widget.roundArc),
-            bottomRight: Radius.circular(widget.roundArc),
+            topLeft: Radius.circular(widget.itemRoundArc),
+            topRight: Radius.circular(widget.itemRoundArc),
+            bottomLeft: Radius.circular(widget.itemRoundArc),
+            bottomRight: Radius.circular(widget.itemRoundArc),
           ),
         ),
       ),
     );
   }
 
-//本地图片，（加号）
-  Widget localImage() {
+  //本地图片，（加号）
+  Widget addLocalImage() {
     double addWidthOrHeight ;
     double padding ;
 
@@ -208,10 +200,6 @@ class _GridPictureSelectWidgetState extends State<GridPictureSelectWidget> with 
     print("padding:"+padding.toString());
     print("mScreenWidth:"+maxWidth.toString());
     print("addWidthOrHeight:"+addWidthOrHeight.toString());
-
-
-
-
 
     return new Stack(
       alignment: Alignment.center, //指定未定位或部分定位widget的对齐方式
@@ -236,10 +224,10 @@ class _GridPictureSelectWidgetState extends State<GridPictureSelectWidget> with 
               ),
               //圆角
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(widget.roundArc),
-                topRight: Radius.circular(widget.roundArc),
-                bottomLeft: Radius.circular(widget.roundArc),
-                bottomRight: Radius.circular(widget.roundArc),
+                topLeft: Radius.circular(widget.itemRoundArc),
+                topRight: Radius.circular(widget.itemRoundArc),
+                bottomLeft: Radius.circular(widget.itemRoundArc),
+                bottomRight: Radius.circular(widget.itemRoundArc),
               ),
             ),
           ),

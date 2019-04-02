@@ -127,10 +127,10 @@ class _FlowHeaderDisplayWidgetState extends State<FlowHeaderDisplayWidget> {
 
     double intervalWidth;
     double intervalHeight;
-    if(widget.intervalType == Constant.header_type_add){
+    if(widget.intervalType == Constant.grid_general_header_add){
       intervalWidth = width /2;
       intervalHeight = height /2;
-    }else if(widget.intervalType == Constant.header_type_right){
+    }else if(widget.intervalType == Constant.grid_general_header_right){
       intervalWidth = width/3.5;
       intervalHeight = height/2;
     }

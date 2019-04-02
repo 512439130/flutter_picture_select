@@ -13,7 +13,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 //图片GridView展示功能
 class GridPictureDisplayWidget extends StatefulWidget {
-  ImageBean testBean;
+  ImageBean imageBean;
   double count;  //每行个数
   double maxWidth;//最大宽度
   final double itemHorizontalSpacing; //水平间距
@@ -22,7 +22,7 @@ class GridPictureDisplayWidget extends StatefulWidget {
 
 
 
-  GridPictureDisplayWidget(this.testBean, this.count,this.maxWidth,this.itemHorizontalSpacing, this.itemVerticalSpacing,this.itemRoundArc);
+  GridPictureDisplayWidget(this.imageBean, this.count,this.maxWidth,this.itemHorizontalSpacing, this.itemVerticalSpacing,this.itemRoundArc);
   @override
   _GridPictureDisplayWidgetState createState() => _GridPictureDisplayWidgetState();
 }
@@ -37,22 +37,22 @@ class _GridPictureDisplayWidgetState extends State<GridPictureDisplayWidget> {
     // TODO: implement initState
     super.initState();
   }
-//  //初始化
 
 
   void setList() {
     print('setList');
+
     listWidget = new List<Widget>();
     imageUrls = new List<String>();
-    for (int i = 0; i < widget.testBean.localImageBean.length; i++) {
-      if (i < widget.testBean.localImageBean.length - 1) {
-        listWidget.add(networkImage(i, widget.testBean.localImageBean[i].url));
-        imageUrls.add(widget.testBean.localImageBean[i].url);
+    for (int i = 0; i < widget.imageBean.localImageBeanList.length; i++) {
+      if (i < widget.imageBean.localImageBeanList.length - 1) {
+        listWidget.add(displayNetworkImage(i, widget.imageBean.localImageBeanList[i].url));
+        imageUrls.add(widget.imageBean.localImageBeanList[i].url);
       }
     }
   }
 
-  Widget networkImage(int id, String url) {
+  Widget displayNetworkImage(int id, String url) {
     return new Stack(
       alignment: Alignment.center, //指定未定位或部分定位widget的对齐方式
       overflow: Overflow.visible,
@@ -61,29 +61,29 @@ class _GridPictureDisplayWidgetState extends State<GridPictureDisplayWidget> {
         new Container(
             alignment: Alignment.center,
 //            color: Colors.greenAccent,
-            child: getNetImage(id, true, url)),
+            child: getDisplayNetworkImage(id, true, url)),
       ],
     );
   }
 
-
-
-  Widget getNetImage(int id, bool isVisible, String url) {
+  Widget getDisplayNetworkImage(int id, bool isVisible, String url) {
     double imageWidthOrHeight;
     double count = widget.count;
     double maxWidth = widget.maxWidth;
     double mItemSpacing = 4;
-    imageWidthOrHeight = (maxWidth/count) - ((count) * (mItemSpacing/count * 2)) - mItemSpacing * 1.5;
+    imageWidthOrHeight = (maxWidth / count) -
+        ((count) * (mItemSpacing / count * 2)) -
+        mItemSpacing * 1.5;
 
-
-    print("count:"+count.toString());
-    print("mScreenWidth:"+maxWidth.toString());
-    print("imageWidthOrHeight:"+imageWidthOrHeight.toString());
+    print("count:" + count.toString());
+    print("mScreenWidth:" + maxWidth.toString());
+    print("imageWidthOrHeight:" + imageWidthOrHeight.toString());
 
     return new GestureDetector(
-      onTap:(){
+      onTap: () {
 //        ImageUtil.openLargeImage(context,url,Constant.image_type_network);
-        PictureUtil.openLargeImages(context, imageUrls, Constant.image_type_network,id);
+        PictureUtil.openLargeImages(
+            context, imageUrls, Constant.image_type_network, id);
       },
       child: new Offstage(
         //使用Offstage 控制widget在tree中的显示和隐藏
@@ -117,6 +117,7 @@ class _GridPictureDisplayWidgetState extends State<GridPictureDisplayWidget> {
       ),
     );
   }
+
 
 
 

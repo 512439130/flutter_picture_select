@@ -71,34 +71,34 @@ class FlowHeaderDisplayWidgetDemoState extends State<FlowHeaderDisplayWidgetDemo
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
-              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(83), ScreenUtil.getInstance().setHeight(83), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_right,'images/icon_right.png'),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(83), ScreenUtil.getInstance().setHeight(83), itemHorizontalSpacing, itemVerticalSpacing,Constant.grid_general_header_right,'images/icon_right.png'),
             ),
 
             //每行5个item
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
-              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(101), ScreenUtil.getInstance().setHeight(101), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_right,'images/icon_right.png'),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(101), ScreenUtil.getInstance().setHeight(101), itemHorizontalSpacing, itemVerticalSpacing,Constant.grid_general_header_right,'images/icon_right.png'),
             ),
 
             //每行4个item
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
-              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(128), ScreenUtil.getInstance().setHeight(128), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_right,'images/icon_right.png'),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(128), ScreenUtil.getInstance().setHeight(128), itemHorizontalSpacing, itemVerticalSpacing,Constant.grid_general_header_right,'images/icon_right.png'),
             ),
             //每行3个header
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
-              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(173), ScreenUtil.getInstance().setHeight(173), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_right,'images/icon_right.png'),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(173), ScreenUtil.getInstance().setHeight(173), itemHorizontalSpacing, itemVerticalSpacing,Constant.grid_general_header_right,'images/icon_right.png'),
             ),
 
             //每行2个header
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
-              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(262), ScreenUtil.getInstance().setHeight(262), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_right,'images/icon_right.png'),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(262), ScreenUtil.getInstance().setHeight(262), itemHorizontalSpacing, itemVerticalSpacing,Constant.grid_general_header_right,'images/icon_right.png'),
             ),
 
 
@@ -108,34 +108,34 @@ class FlowHeaderDisplayWidgetDemoState extends State<FlowHeaderDisplayWidgetDemo
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
-              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(92), ScreenUtil.getInstance().setHeight(92), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_add,'images/icon_add.png'),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(92), ScreenUtil.getInstance().setHeight(92), itemHorizontalSpacing, itemVerticalSpacing,Constant.grid_general_header_add,'images/icon_add.png'),
             ),
 
             //每行5个item
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
-              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(113), ScreenUtil.getInstance().setHeight(113), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_add,'images/icon_add.png'),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(113), ScreenUtil.getInstance().setHeight(113), itemHorizontalSpacing, itemVerticalSpacing,Constant.grid_general_header_add,'images/icon_add.png'),
             ),
 
             //每行4个item
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
-              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(147), ScreenUtil.getInstance().setHeight(146), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_add,'images/icon_add.png'),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(147), ScreenUtil.getInstance().setHeight(146), itemHorizontalSpacing, itemVerticalSpacing,Constant.grid_general_header_add,'images/icon_add.png'),
             ),
             //每行3个header
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
-              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(209), ScreenUtil.getInstance().setHeight(209), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_add,'images/icon_add.png'),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(209), ScreenUtil.getInstance().setHeight(209), itemHorizontalSpacing, itemVerticalSpacing,Constant.grid_general_header_add,'images/icon_add.png'),
             ),
 
             //每行2个header
             new Container(
               color:Colors.white,
               padding:EdgeInsets.fromLTRB(boxPaddingLeft, boxPaddingTop, boxPaddingRight, boxPaddingBottom),
-              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(351), ScreenUtil.getInstance().setHeight(351), itemHorizontalSpacing, itemVerticalSpacing,Constant.header_type_add,'images/icon_add.png'),
+              child: FlowHeaderDisplayWidget(headerBean,ScreenUtil.getInstance().setWidth(351), ScreenUtil.getInstance().setHeight(351), itemHorizontalSpacing, itemVerticalSpacing,Constant.grid_general_header_add,'images/icon_add.png'),
             ),
           ],
         ));

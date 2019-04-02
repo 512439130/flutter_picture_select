@@ -7,13 +7,14 @@ import 'package:flutter_picture_select/widget/demo/FileDisplayWidgetDemo.dart';
 import 'package:flutter_picture_select/widget/demo/FlowHeaderDisplayWidgetDemo.dart';
 import 'package:flutter_picture_select/widget/demo/FlowPictureDisplayWidgetDemo.dart';
 import 'package:flutter_picture_select/widget/demo/FlowSelectPictureWidgetDemo.dart';
+import 'package:flutter_picture_select/widget/demo/GridGeneralWidgetDemo.dart';
+import 'package:flutter_picture_select/widget/demo/GridHeaderDisplayWidgetDemo.dart';
+import 'package:flutter_picture_select/widget/demo/GridPictureDisplayWidgetDemo.dart';
+import 'package:flutter_picture_select/widget/demo/GridSelectPictureWidgetDemo.dart';
 import 'package:flutter_picture_select/widget/demo/NetworkDemo.dart';
 import 'package:flutter_picture_select/widget/demo/RefreshDemo.dart';
-import 'package:flutter_picture_select/widget/demo/GridPictureDisplayWidgetDemo.dart';
-import 'package:flutter_picture_select/widget/demo/GridHeaderDisplayWidgetDemo.dart';
-import 'package:flutter_picture_select/widget/demo/GridSelectPictureWidgetDemo.dart';
-import 'package:oktoast/oktoast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:oktoast/oktoast.dart';
 
 
 
@@ -63,10 +64,11 @@ class MyApp extends StatelessWidget {
           '/router/widget/demo/FlowSelectPictureWidgetDemo': (_) => new FlowSelectPictureWidgetDemo(),
           '/router/widget/demo/FlowHeaderDisplayWidgetDemo': (_) => new FlowHeaderDisplayWidgetDemo(),
           '/router/widget/demo/FileDisplayWidgetDemo': (_) => new FileDisplayWidgetDemo(),
-
           '/router/widget/demo/RefreshDemo': (_) => new RefreshWidget(),
           '/router/widget/demo/NetworkDemo': (_) => new NetworkWidget(),
           '/router/widget/demo/CardWidgetDemo': (_) => new CardWidgetDemo(),
+          '/router/widget/demo/GridGeneralWidgetDemo': (_) => new GridGeneralWidgetDemo(),
+
         },
       ),
     );
@@ -180,6 +182,13 @@ class _MyHomePageState extends State<MyHomePage> {
               child: buildButton("CardWidget", Colors.white, Colors.deepOrangeAccent,
                   '/router/widget/demo/CardWidgetDemo'),
             ),
+            new Container(
+            color: const Color(0xFFFFFFFF),
+            margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+            child: buildButton("GridGeneralWidgetDemo", Colors.white, Colors.deepOrangeAccent,
+            '/router/widget/demo/GridGeneralWidgetDemo'),
+            ),
+
           ],
 
         ));

@@ -34,6 +34,7 @@ class GridPictureDisplayWidgetDemoState extends State<GridPictureDisplayWidgetDe
       json = jsonDecode(testJsonValue);
       imageBean = ImageBean.fromJson(json);
     }
+    print(imageBean);
   }
   void getSize() {
     parentSize = MediaQuery.of(context).size;
