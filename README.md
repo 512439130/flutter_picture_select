@@ -975,6 +975,7 @@ Future<void> obtainPermission() async {
 * 7.native跳转并传参（native《=》flutter） ing
 * 8.适配（字体大小，宽高），自定义字体，国际化 styudy（屏幕适配：complete）
 * 9.插件封装(widget,util)  ing
+* 10.文件下载&预览  ing
 
 
 * insert

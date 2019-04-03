@@ -157,21 +157,12 @@ class _GridGeneralWidgetState extends State<GridGeneralWidget> {
         offstage: isVisible ? false : true,
         child: new ClipRRect(
           child: new Container(
-            padding: const EdgeInsets.all(0),
-            child: new CachedNetworkImage(
-              width: imageWidthOrHeight,
-              height: imageWidthOrHeight,
-
-              fit: BoxFit.cover,
-              fadeInCurve: Curves.ease,
-              fadeInDuration: Duration(milliseconds: 500),
-              fadeOutCurve: Curves.ease,
-              fadeOutDuration: Duration(milliseconds: 300),
-              imageUrl: url,
-//        placeholder: (context, url) => Image(image: AssetImage('images/icon_image_default.png')),
-              placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => new Icon(Icons.error),
-            ),
+              padding: const EdgeInsets.all(0),
+              child:new Image.network(url,
+                width: imageWidthOrHeight,
+                height: imageWidthOrHeight,
+                fit: BoxFit.cover,
+              )
           ),
           //圆角
           borderRadius: BorderRadius.only(
@@ -341,21 +332,26 @@ class _GridGeneralWidgetState extends State<GridGeneralWidget> {
   }
 
   Widget getHeaderNetworkImage(int id, bool isVisible, String url, String name) {
-    double imageWidthOrHeight;
+    double imageWidth;
+    double imageHeight;
+    double imageContainerWidth;
+    double imageContainerHeight;
     double count = widget.count;
-    double maxWidth = widget.maxWidth;
-    double mItemSpacing = 4;
-    imageWidthOrHeight = (maxWidth / count) -
-        ((count) * (mItemSpacing / count * 2)) -
-        mItemSpacing * 1.5;
-    imageWidthOrHeight = imageWidthOrHeight / 2.6;
+    double headMaxWidth = widget.maxWidth / 12 * 11;   //总宽度的3/4
+    double mItemSpacing = widget.itemHorizontalSpacing;//item之前的间距
 
-    double fontSize = imageWidthOrHeight / 4;
+    imageWidth = ((headMaxWidth-mItemSpacing) / count) /2;
+    imageHeight = imageWidth;
+
+//    imageWidthOrHeight = (headMaxWidth / count) - ((count) * (mItemSpacing / count * 2)) - mItemSpacing * 1.5;
+//    imageWidthOrHeight = imageWidthOrHeight/13*8;
+
+    double fontSize = imageWidth / 4;
 
     print("count:" + count.toString());
-    print("mScreenWidth:" + maxWidth.toString());
-    print("imageWidthOrHeight:" + imageWidthOrHeight.toString());
-
+    print("mScreenWidth:" + headMaxWidth.toString());
+    print("imageWidth:" + imageWidth.toString());
+    print("imageHeight:" + imageHeight.toString());
     return new GestureDetector(
         onTap: () {
 //        ImageUtil.openLargeImage(context,url,Constant.image_type_network);
@@ -364,77 +360,103 @@ class _GridGeneralWidgetState extends State<GridGeneralWidget> {
         },
         child: new Offstage(
           //使用Offstage 控制widget在tree中的显示和隐藏
-          offstage: isVisible ? false : true,
+            offstage: isVisible ? false : true,
+            child: new Wrap(
+              textDirection: TextDirection.ltr, //从(左/右)边开始  表示水平方向子widget的布局顺序(是从左往右还是从右往左)  textDirection是alignment的参考系
+              alignment: WrapAlignment.start, //textDirection的正方向
 
-          child: new Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              new ClipOval(
-                child: new Container(
-                  padding: EdgeInsets.all(0),
-                  child: new CachedNetworkImage(
-                    width: imageWidthOrHeight,
-                    height: imageWidthOrHeight,
+              verticalDirection: VerticalDirection.down, //down:表示从上到下 up:表示从下到上
+              runAlignment: WrapAlignment.start, //纵轴方向的对齐方式:top,start,bottom,end
+              children: <Widget>[
+                new Container(
+                  width: double.infinity,
+                  child: new Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      new ClipOval(
+                        child: new Container(
 
-                    fit: BoxFit.cover,
-                    fadeInCurve: Curves.ease,
-                    fadeInDuration: Duration(milliseconds: 500),
-                    fadeOutCurve: Curves.ease,
-                    fadeOutDuration: Duration(milliseconds: 300),
-                    imageUrl: url,
-//        placeholder: (context, url) => Image(image: AssetImage('images/icon_image_default.png')),
-                    placeholder: (context, url) => CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => new Icon(Icons.error),
+                          padding: EdgeInsets.all(0),
+                          child: new Image.network(url,
+                            width: imageWidth,
+                            height: imageHeight,
+
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      new Container(
+                        padding: EdgeInsets.only(top: ScreenUtil.getInstance().setHeight(8)),
+                        child: new Text(
+                          name,
+                          style: new TextStyle(
+                            color: Colors.black,
+                            fontSize: fontSize,
+                            fontStyle: FontStyle.normal,
+                            decorationColor: Colors.green,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-              new Container(
-                padding: EdgeInsets.only(top: 5),
-                child: new Text(
-                  name,
-                  style: new TextStyle(
-                    color: Colors.black,
-                    fontSize: fontSize,
-                    fontStyle: FontStyle.normal,
-                    decorationColor: Colors.green,
-                  ),
-                ),
-              ),
-            ],
-          ),
+              ],
+            )
         ));
   }
 
 //本地图片
   Widget headerLocalImage() {
     bool isVisible = true;
-    double widthOrHeight;
+    double headWidth;
+    double headHeight;
+    double headContainerWidth;
+    double headContainerHeight;
+    print("widget.maxWidth:" + widget.maxWidth.toString());
     double padding;
-    double count = widget.count;
-    double maxWidth = widget.maxWidth;
+    double count;
+    double headerLocalMaxWidth = widget.maxWidth / 12 * 1;   //总宽度的1/4
 
-    double mItemSpacing = 4;
 
-    widthOrHeight = (maxWidth / count) - ((count) * (mItemSpacing / count * 2)) - mItemSpacing * 1.5;
-    widthOrHeight = widthOrHeight / 2.6;
+    double mItemSpacing = widget.itemHorizontalSpacing;//item之前的间距
+    if(widget.intervalImageType == Constant.grid_general_header_right){
+      count = widget.count;
+      headWidth = ((headerLocalMaxWidth-mItemSpacing) / count);
+      headHeight = headWidth/20*35;
 
-    double intervalWidth = widthOrHeight /3;
-    double intervalHeight = widthOrHeight /3;
-    if(widget.intervalImageType == Constant.grid_general_header_add){
-      intervalWidth = widthOrHeight /2;
-      intervalHeight = widthOrHeight /2;
-    }else if(widget.intervalImageType == Constant.grid_general_header_right){
-      intervalWidth = widthOrHeight/3.5;
-      intervalHeight = widthOrHeight/2;
+    }else if(widget.intervalImageType == Constant.grid_general_header_add){
+
+      count = widget.count -1;
+      headWidth = ((headerLocalMaxWidth-mItemSpacing) / count)/20*35;
+      headHeight = headWidth;
     }
+    headContainerWidth = headWidth * 2;
+    headContainerHeight = headHeight * 4;
+
+
+//    double mItemSpacing = 4;
+//
+//    widthOrHeight = (maxWidth / count) - ((count) * (mItemSpacing / count * 2)) - mItemSpacing * 1.5;
+//    widthOrHeight = widthOrHeight /5;
+
+//    double intervalWidth = widthOrHeight /3;
+//    double intervalHeight = widthOrHeight /3;
+//    if(widget.intervalImageType == Constant.grid_general_header_add){
+//      intervalWidth = widthOrHeight /2;
+//      intervalHeight = widthOrHeight /2;
+//    }else if(widget.intervalImageType == Constant.grid_general_header_right){
+//      intervalWidth = widthOrHeight/3.5;
+//      intervalHeight = widthOrHeight/2;
+//    }
 
 
     print("count:" + count.toString());
     print("padding:" + padding.toString());
-    print("mScreenWidth:" + maxWidth.toString());
-    print("WidthOrHeight:" + widthOrHeight.toString());
-    print("imageWidth:" + intervalWidth.toString());
-    print("imageHeight:" + intervalHeight.toString());
+
+//    print("mScreenWidth:" + maxWidth.toString());
+//    print("WidthOrHeight:" + widthOrHeight.toString());
+//    print("imageWidth:" + intervalWidth.toString());
+//    print("imageHeight:" + intervalHeight.toString());
     return new Offstage(
       //使用Offstage 控制widget在tree中的显示和隐藏
         offstage: isVisible ? false : true,
@@ -446,13 +468,13 @@ class _GridGeneralWidgetState extends State<GridGeneralWidget> {
               top: 0,
               child: new Container(
                 alignment: Alignment.center,
-                color: const Color(0xFFFFFFFF),
-
-                width: widthOrHeight,
-                height: widthOrHeight,
+//                color: const Color(0xFFFFFFFF),
+//                color: Colors.red,
+                width: headContainerWidth,
+                height: headContainerHeight,
                 child: new Image.asset(widget.intervalImageUrl,
-                    width: intervalWidth,
-                    height: intervalHeight,
+                    width: headWidth,
+                    height: headHeight,
                     fit: BoxFit.cover),
               ),
             ),
@@ -475,14 +497,12 @@ class _GridGeneralWidgetState extends State<GridGeneralWidget> {
             child: new Center(
                 child: new GridView.count(
                   crossAxisCount: widget.type == Constant.grid_general_header?widget.intervalImageType == Constant.grid_general_header_right?widget.count.toInt() * 2: widget.count.toInt() * 2-1:widget.count.toInt(),
-                  mainAxisSpacing: widget.itemVerticalSpacing,
-                  //上下间距
-                  crossAxisSpacing: widget.itemHorizontalSpacing,
-                  //左右间距
+                  mainAxisSpacing:  widget.itemVerticalSpacing, //上下间距
+                  crossAxisSpacing: widget.itemHorizontalSpacing, //左右间距
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   primary: false,
                   shrinkWrap: true,
-                  childAspectRatio: widget.type == Constant.grid_general_header? 2 / 3:1,
+                  childAspectRatio: widget.type == Constant.grid_general_header? 8 / 13:1,
                   children: listWidget,
                 )),
           ),
